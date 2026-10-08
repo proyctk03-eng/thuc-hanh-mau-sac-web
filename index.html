@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Tập: Nhúng CSS Vào Trang HTML - CodeGym</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --success: #16A34A;
+            --purple: #9333EA;
+            --bg-page: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #F8FAFC 0%, #EEF2F6 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #DBEAFE;
+            color: var(--primary-dark);
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        header h1 {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 16px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* 3-Card Grid Comparison */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 28px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .pill {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .pill-blue { background: #DBEAFE; color: #1D4ED8; }
+        .pill-green { background: #DCFCE7; color: #15803D; }
+        .pill-purple { background: #F3E8FF; color: #7E22CE; }
+
+        /* Preview box */
+        .preview-box {
+            background: #F8FAFC;
+            border: 1px dashed var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 18px;
+        }
+
+        .preview-box h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .preview-box p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Specific Demo Styles */
+        .demo-inline h2 { color: #1D4ED8; }
+        .demo-inline p { color: #0369A1; }
+
+        .demo-internal h2 { color: #15803D; }
+        .demo-internal p { color: #047857; }
+
+        .demo-external h2 { color: #7E22CE; }
+        .demo-external p { color: #9333EA; }
+
+        /* Code display */
+        .code-snippet {
+            background: #0F172A;
+            color: #E2E8F0;
+            padding: 14px;
+            border-radius: var(--radius-md);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: auto;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-blue { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
+        .btn-blue:hover { background: #1D4ED8; color: #FFFFFF; }
+
+        .btn-green { background: #F0FDF4; color: #15803D; border: 1px solid #BBF7D0; }
+        .btn-green:hover { background: #15803D; color: #FFFFFF; }
+
+        .btn-purple { background: #FAF5FF; color: #7E22CE; border: 1px solid #E9D5FF; }
+        .btn-purple:hover { background: #7E22CE; color: #FFFFFF; }
+
+        /* Priority Cascade Banner */
+        .cascade-section {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .cascade-section h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .cascade-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .cascade-step {
+            flex: 1;
+            min-width: 220px;
+            background: #F8FAFC;
+            border: 1px solid var(--border-color);
+            padding: 16px 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .cascade-step strong {
+            display: block;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .priority-high { border-top: 4px solid #EF4444; }
+        .priority-med { border-top: 4px solid #F59E0B; }
+        .priority-std { border-top: 4px solid #10B981; }
+
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <span class="badge">CodeGym Web Development</span>
+        <h1>Nhúng CSS Vào Trang HTML</h1>
+        <p>Minh họa trực quan 3 phương pháp nhúng định kiểu (Inline, Internal, External) và nguyên lý phân tầng ưu tiên (Cascade Specificity).</p>
+    </header>
+
+    <div class="grid">
+        <!-- Card 1: Inline Style -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Phần 1: Inline Style</span>
+                <span class="pill pill-blue">Độ ưu tiên cao nhất</span>
+            </div>
+            <div class="preview-box demo-inline">
+                <h2>Tiêu Đề (Inline)</h2>
+                <p>Đoạn văn có màu xanh lam đậm được áp dụng trực tiếp qua thuộc tính style.</p>
+            </div>
+            <div class="code-snippet">&lt;h1 style="color: #1D4ED8;"&gt;...&lt;/h1&gt;
+&lt;p style="color: #0369A1;"&gt;...&lt;/p&gt;</div>
+            <a href="part1_inline.html" class="link-btn btn-blue" target="_blank">Xem File Riêng Part 1 ↗</a>
+        </div>
+
+        <!-- Card 2: Internal Style -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Phần 2: Internal Style</span>
+                <span class="pill pill-green">Phạm vi 1 trang</span>
+            </div>
+            <div class="preview-box demo-internal">
+                <h2>Tiêu Đề (Internal)</h2>
+                <p>Đoạn văn có màu xanh lục bảo định nghĩa trong thẻ &lt;style&gt; ở &lt;head&gt;.</p>
+            </div>
+            <div class="code-snippet">&lt;head&gt;
+  &lt;style&gt;
+    h1 { color: #15803D; }
+    p  { color: #047857; }
+  &lt;/style&gt;
+&lt;/head&gt;</div>
+            <a href="part2_internal.html" class="link-btn btn-green" target="_blank">Xem File Riêng Part 2 ↗</a>
+        </div>
+
+        <!-- Card 3: External Style -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Phần 3: External Style</span>
+                <span class="pill pill-purple">Chuẩn công nghiệp</span>
+            </div>
+            <div class="preview-box demo-external">
+                <h2>Tiêu Đề (External)</h2>
+                <p>Đoạn văn có màu tím hoàng gia được tải từ tệp độc lập style.css.</p>
+            </div>
+            <div class="code-snippet">&lt;head&gt;
+  &lt;link rel="stylesheet"
+        href="style.css"&gt;
+&lt;/head&gt;</div>
+            <a href="part3_external.html" class="link-btn btn-purple" target="_blank">Xem File Riêng Part 3 ↗</a>
+        </div>
+    </div>
+
+    <!-- Cascade Priority Section -->
+    <div class="cascade-section">
+        <h3>⚡ Thứ Tự Ưu Tiên (CSS Cascading Order)</h3>
+        <p style="color: var(--text-muted); font-size: 14px;">Khi cùng một phần tử HTML bị tác động bởi nhiều kiểu nhúng khác nhau, trình duyệt sẽ áp dụng quy tắc ưu tiên từ cao xuống thấp:</p>
+        
+        <div class="cascade-flow">
+            <div class="cascade-step priority-high">
+                <strong>1. Inline Style</strong>
+                <span style="font-size: 13px; color: #DC2626;">Đè mọi quy tắc khác (trừ !important)</span>
+            </div>
+            <div style="font-weight: 700; color: #94A3B8;">&gt;</div>
+            <div class="cascade-step priority-med">
+                <strong>2. Internal / External</strong>
+                <span style="font-size: 13px; color: #D97706;">Quy tắc nào được tải sau cùng sẽ ghi đè</span>
+            </div>
+            <div style="font-weight: 700; color: #94A3B8;">&gt;</div>
+            <div class="cascade-step priority-std">
+                <strong>3. Browser Default</strong>
+                <span style="font-size: 13px; color: #059669;">Kiểu mặc định của User Agent</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 CodeGym Assignment - Nhúng CSS Vào Trang HTML</p>
+    </footer>
+</div>
+
+</body>
+</html>
