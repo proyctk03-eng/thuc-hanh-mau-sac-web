@@ -1,0 +1,107 @@
+/* =============================================================================
+   BÀI TẬP: TẠO GALLERY ĐƠN GIẢN SỬ DỤNG BOOTSTRAP
+   Tệp: styles.css
+   Mục tiêu: Tối ưu hiệu ứng Card Hover, Zoom Overlay & Tỷ Lệ Ảnh
+   ============================================================================= */
+
+/* Thiết lập font chữ chung */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #1e293b;
+}
+
+/* Banner Hero */
+.hero-banner {
+    background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0f172a 100%) !important;
+}
+
+.backdrop-blur {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.tracking-wide {
+    letter-spacing: 1px;
+}
+
+/* Khung bọc ảnh & Hiệu ứng Zoom khi rê chuột */
+.gallery-card {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.12) !important;
+}
+
+.img-zoom-wrapper {
+    overflow: hidden;
+    height: 200px;
+    background-color: #e2e8f0;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-card:hover .gallery-img {
+    transform: scale(1.08);
+}
+
+/* Lớp phủ phóng to ảnh (Zoom Overlay) */
+.zoom-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.4);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.zoom-icon {
+    background: rgba(255, 255, 255, 0.9);
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(8px);
+    transition: transform 0.25s ease;
+}
+
+.gallery-card:hover .zoom-overlay {
+    opacity: 1;
+}
+
+.gallery-card:hover .zoom-icon {
+    transform: translateY(0);
+}
+
+/* Tiêu đề card */
+.card-title {
+    font-size: 16px;
+    transition: color 0.2s ease;
+}
+
+.gallery-card:hover .card-title {
+    color: #2563eb !important;
+}
+
+/* Modal Lightbox */
+#lightboxModal .modal-content {
+    background-color: #0f172a !important;
+}
+
+#lightboxModal img {
+    max-height: 70vh;
+    width: 100%;
+    object-fit: contain;
+}

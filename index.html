@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Tập Tạo Gallery Đơn Giản Sử Dụng Bootstrap - CodeGym</title>
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-light">
+
+    <!-- 1. HEADER BANNER -->
+    <header class="py-5 bg-dark text-white text-center position-relative overflow-hidden hero-banner">
+        <div class="container position-relative z-1">
+            <span class="badge bg-primary px-3 py-2 rounded-pill text-uppercase fw-bold mb-3 tracking-wide">
+                Bootstrap Grid System
+            </span>
+            <h1 class="display-5 fw-extrabold mb-2">Thư Viện Ảnh Phong Cảnh Thiên Nhiên</h1>
+            <p class="lead text-secondary mx-auto mb-4" style="max-width: 700px;">
+                Bộ sưu tập hình ảnh cảnh sắc thiên nhiên tuyệt đẹp, xây dựng hoàn toàn bằng hệ thống lưới linh hoạt của Bootstrap (Grid Classes: <code>col-12</code>, <code>col-sm-6</code>, <code>col-lg-3</code>).
+            </p>
+            
+            <!-- Hộp chỉ số Grid Breakpoint -->
+            <div class="d-inline-flex flex-wrap justify-content-center gap-2 bg-white bg-opacity-10 p-2 rounded-4 backdrop-blur">
+                <span class="badge bg-success-subtle text-success-emphasis border border-success-subtle px-3 py-2 rounded-pill">
+                    🖥️ Desktop (col-lg-3): 4 ảnh / dòng
+                </span>
+                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-3 py-2 rounded-pill">
+                    📱 Tablet (col-sm-6): 2 ảnh / dòng
+                </span>
+                <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle px-3 py-2 rounded-pill">
+                    📲 Mobile (col-12): 1 ảnh / dòng
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. NỘI DUNG CHÍNH (GALLERY GRID) -->
+    <main class="container my-5">
+        
+        <!-- Thanh bộ lọc chuyên mục ảnh -->
+        <div class="d-flex justify-content-center flex-wrap gap-2 mb-4 filter-nav">
+            <button class="btn btn-outline-primary active rounded-pill px-4" onclick="filterGallery('all', this)">Tất Cả (8)</button>
+            <button class="btn btn-outline-secondary rounded-pill px-4" onclick="filterGallery('mountains', this)">Núi Non</button>
+            <button class="btn btn-outline-secondary rounded-pill px-4" onclick="filterGallery('sea', this)">Biển & Hồ</button>
+            <button class="btn btn-outline-secondary rounded-pill px-4" onclick="filterGallery('forest', this)">Rừng & Cực Quang</button>
+        </div>
+
+        <!-- HÀNG LƯỚI BOOTSTRAP (ROW) -->
+        <!-- YÊU CẦU:
+             - Desktop (col-lg-3): hiển thị 4 ảnh trên cùng một dòng (12/3 = 4).
+             - Tablet (col-sm-6): hiển thị 2 ảnh trên cùng một dòng (12/6 = 2).
+             - Mobile (col-12): hiển thị 1 ảnh trên một dòng (12/12 = 1).
+        -->
+        <div class="row g-4" id="galleryContainer">
+
+            <!-- ẢNH 1: Vịnh Hẹp Na Uy -->
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item" data-category="sea">
+                <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden gallery-card">
+                    <div class="img-zoom-wrapper position-relative" onclick="openLightbox('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&auto=format&fit=crop&q=80', 'Vịnh Hẹp Na Uy (Fjords)', 'Vịnh hẹp nước sâu giữa những dãy núi đá dốc đứng hùng vĩ tại Na Uy.')">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80" class="card-img-top gallery-img" alt="Vịnh Hẹp Na Uy">
+                        <span class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1">
+                            🇳🇴 Na Uy
+                        </span>
+                        <div class="zoom-overlay d-flex align-items-center justify-content-center">
+                            <span class="zoom-icon">🔍 Phóng to</span>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-direction-column justify-content-between p-3">
+                        <div>
+                            <h5 class="card-title fw-bold text-dark mb-1">Vịnh Hẹp Na Uy</h5>
+                            <p class="card-text text-muted small">Cảnh quan vịnh nước sâu kỳ vĩ được UNESCO công nhận là di sản thiên nhiên thế giới.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ẢNH 2: Ánh Sáng Cực Quang -->
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item" data-category="forest">
+                <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden gallery-card">
+                    <div class="img-zoom-wrapper position-relative" onclick="openLightbox('https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&auto=format&fit=crop&q=80', 'Cực Quang Phương Bắc (Aurora)', 'Dải ánh sáng huyền ảo màu xanh ngọc bích tỏa sáng rực rỡ giữa bầu trời đêm Bắc Cực.')">
+                        <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&auto=format&fit=crop&q=80" class="card-img-top gallery-img" alt="Cực Quang">
+                        <span class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1">
+                            🇫🇮 Phần Lan
+                        </span>
+                        <div class="zoom-overlay d-flex align-items-center justify-content-center">
+                            <span class="zoom-icon">🔍 Phóng to</span>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-direction-column justify-content-between p-3">
+                        <div>
+                            <h5 class="card-title fw-bold text-dark mb-1">Cực Quang Bắc Cực</h5>
+                            <p class="card-text text-muted small">Hiện tượng thiên văn kỳ thú với những dải lụa phát sáng màu xanh diệu kỳ trên nền trời đêm.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ẢNH 3: Dãy Núi Alps Thụy Sĩ -->
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item" data-category="mountains">
+                <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden gallery-card">
+                    <div class="img-zoom-wrapper position-relative" onclick="openLightbox('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&auto=format&fit=crop&q=80', 'Dãy Núi Alps Hùng Vĩ', 'Đỉnh núi tuyết trắng quanh năm phủ kín giữa mây trời trong xanh tại Thụy Sĩ.')">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&auto=format&fit=crop&q=80" class="card-img-top gallery-img" alt="Dãy Núi Alps">
+                        <span class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1">
+                            🇨🇭 Thụy Sĩ
+                        </span>
+                        <div class="zoom-overlay d-flex align-items-center justify-content-center">
+                            <span class="zoom-icon">🔍 Phóng to</span>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-direction-column justify-content-between p-3">
+                        <div>
+                            <h5 class="card-title fw-bold text-dark mb-1">Đỉnh Núi Tuyết Alps</h5>
+                            <p class="card-text text-muted small">Những rặng núi hùng vĩ sừng sững giữa trời xanh, địa điểm du lịch trượt tuyết nổi tiếng.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ẢNH 4: Rừng Thu Vàng Canada -->
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item" data-category="forest">
+                <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden gallery-card">
+                    <div class="img-zoom-wrapper position-relative" onclick="openLightbox('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&auto=format&fit=crop&q=80', 'Rừng Cây Mùa Thu', 'Thảm lá phong đỏ vàng rực rỡ soi bóng xuống dòng suối êm đềm tại Alberta, Canada.')">
+                        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&auto=format&fit=crop&q=80" class="card-img-top gallery-img" alt="Rừng Thu Canada">
+                        <span class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1">
+                            🇨🇦 Canada
+                        </span>
+                        <div class="zoom-overlay d-flex align-items-center justify-content-center">
+                            <span class="zoom-icon">🔍 Phóng to</span>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-direction-column justify-content-between p-3">
+                        <div>
+                            <h5 class="card-title fw-bold text-dark mb-1">Rừng Thu Lá Vàng</h5>
+                            <p class="card-text text-muted small">Sắc đỏ vàng rực rỡ của những cánh rừng nguyên sinh bạt ngàn vào mỗi độ thu sang.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ẢNH 5: Hồ Moraine Nước Xanh Ngọc -->
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item" data-category="sea">
+                <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden gallery-card">
+                    <div class="img-zoom-wrapper position-relative" onclick="openLightbox('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&auto=format&fit=crop&q=80', 'Biển Xanh Nhiệt Đới', 'Bãi cát trắng mịn màng hòa cùng làn nước biển xanh trong vắt tại Maldives.')">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80" class="card-img-top gallery-img" alt="Bãi Biển Maldives">
+                        <span class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1">
+                            🇲🇻 Maldives
+                        </span>
+                        <div class="zoom-overlay d-flex align-items-center justify-content-center">
+                            <span class="zoom-icon">🔍 Phóng to</span>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-direction-column justify-content-between p-3">
+                        <div>
+                            <h5 class="card-title fw-bold text-dark mb-1">Thiên Đường Biển Đảo</h5>
+                            <p class="card-text text-muted small">Làn nước biển xanh ngọc bích hòa quyện cùng bãi cát trắng mịn dưới ánh nắng chan hòa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ẢNH 6: Dãy Núi Dolomites Ý -->
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item" data-category="mountains">
+                <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden gallery-card">
+                    <div class="img-zoom-wrapper position-relative" onclick="openLightbox('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&auto=format&fit=crop&q=80', 'Dãy Núi Dolomites Dưới Bầu Trời Sao', 'Những vách đá sắc nhọn vươn cao kiêu hãnh trên nền dải ngân hà rực rỡ.')">
+                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&auto=format&fit=crop&q=80" class="card-img-top gallery-img" alt="Dãy Núi Dolomites">
+                        <span class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1">
+                            🇮🇹 Ý (Italy)
+                        </span>
+                        <div class="zoom-overlay d-flex align-items-center justify-content-center">
+                            <span class="zoom-icon">🔍 Phóng to</span>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-direction-column justify-content-between p-3">
+                        <div>
+                            <h5 class="card-title fw-bold text-dark mb-1">Dolomites Dưới Trời Sao</h5>
+                            <p class="card-text text-muted small">Vách núi đá vôi đồ sộ vươn mình giữa bầu trời đêm lấp lánh hàng triệu vì sao tinh tú.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ẢNH 7: Hồ Núi Núi Phú Sĩ -->
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item" data-category="mountains">
+                <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden gallery-card">
+                    <div class="img-zoom-wrapper position-relative" onclick="openLightbox('https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=1200&auto=format&fit=crop&q=80', 'Núi Phú Sĩ Mùa Hoa Anh Đào', 'Biểu tượng linh thiêng của đất nước mặt trời mọc soi bóng bên hồ Kawaguchiko.')">
+                        <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=600&auto=format&fit=crop&q=80" class="card-img-top gallery-img" alt="Núi Phú Sĩ Nhật Bản">
+                        <span class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1">
+                            🇯🇵 Nhật Bản
+                        </span>
+                        <div class="zoom-overlay d-flex align-items-center justify-content-center">
+                            <span class="zoom-icon">🔍 Phóng to</span>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-direction-column justify-content-between p-3">
+                        <div>
+                            <h5 class="card-title fw-bold text-dark mb-1">Núi Phú Sĩ Thơ Mộng</h5>
+                            <p class="card-text text-muted small">Ngọn núi lửa hùng vĩ ẩn hiện sau những nhành hoa anh đào bung nở rực rỡ đầu xuân.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ẢNH 8: Hẻm Núi Grand Canyon -->
+            <div class="col-12 col-sm-6 col-lg-3 gallery-item" data-category="sea">
+                <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden gallery-card">
+                    <div class="img-zoom-wrapper position-relative" onclick="openLightbox('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&auto=format&fit=crop&q=80', 'Sương Mù Rừng Thông Hoàng Hôn', 'Tia nắng chiều muộn len lỏi qua làn sương mờ ảo trên những triền đồi thông xanh ngát.')">
+                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&auto=format&fit=crop&q=80" class="card-img-top gallery-img" alt="Rừng Thông Sương Mù">
+                        <span class="badge bg-dark bg-opacity-75 text-white position-absolute top-0 start-0 m-3 rounded-pill px-3 py-1">
+                            🌲 Rừng Thông
+                        </span>
+                        <div class="zoom-overlay d-flex align-items-center justify-content-center">
+                            <span class="zoom-icon">🔍 Phóng to</span>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex flex-direction-column justify-content-between p-3">
+                        <div>
+                            <h5 class="card-title fw-bold text-dark mb-1">Hoàng Hôn Trên Rừng Thông</h5>
+                            <p class="card-text text-muted small">Vẻ đẹp tĩnh lặng huyền bí khi ánh hoàng hôn dần buông xuống thung lũng sương mù mờ ảo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- 3. MODAL LIGHTBOX XEM ẢNH FULL SIZE -->
+    <div class="modal fade" id="lightboxModal" tabindex="-1" aria-labelledby="lightboxModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 rounded-4 overflow-hidden shadow-lg bg-dark text-white">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="modalImageTitle">Tiêu Đề Ảnh</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-3 text-center">
+                    <img id="modalImageSrc" src="" class="img-fluid rounded-3 mb-3 shadow" alt="Xem ảnh phóng to">
+                    <p id="modalImageDesc" class="text-secondary mb-0 small text-start px-2"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. FOOTER -->
+    <footer class="bg-dark text-secondary text-center py-4 border-top border-secondary border-opacity-25 mt-5">
+        <div class="container">
+            <p class="mb-1 text-white fw-semibold">© 2026 CodeGym Assignment - Tạo gallery đơn giản sử dụng Bootstrap</p>
+            <p class="small mb-0">Hệ thống lưới Responsive: <code>col-12</code> (Mobile) • <code>col-sm-6</code> (Tablet) • <code>col-lg-3</code> (Desktop)</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Script Lightbox Modal & Bộ lọc chuyên mục -->
+    <script>
+        // Mở ảnh trong Lightbox Modal
+        function openLightbox(imgUrl, title, desc) {
+            document.getElementById('modalImageSrc').src = imgUrl;
+            document.getElementById('modalImageTitle').innerText = title;
+            document.getElementById('modalImageDesc').innerText = desc;
+            const myModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+            myModal.show();
+        }
+
+        // Lọc danh mục ảnh
+        function filterGallery(category, btn) {
+            document.querySelectorAll('.filter-nav .btn').forEach(b => {
+                b.classList.remove('btn-outline-primary', 'active');
+                b.classList.add('btn-outline-secondary');
+            });
+            btn.classList.remove('btn-outline-secondary');
+            btn.classList.add('btn-outline-primary', 'active');
+
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
