@@ -1,0 +1,348 @@
+/* ==========================================================================
+   CreativeChronicle Magazine - Modern Layout Stylesheet
+   Refactoring Legacy Code: Eliminating Float & Absolute Nightmare
+   Architecture: Flexbox (1D) + CSS Grid (2D) + Bootstrap 5 Grid System
+   ========================================================================== */
+
+/* 1. Typography & Global Polish */
+:root {
+    --brand-primary: #2563eb;
+    --brand-dark: #0f172a;
+    --brand-light: #f8fafc;
+    --text-primary: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: var(--text-primary);
+    background-color: #ffffff;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Magazine Masthead & Header */
+.magazine-header {
+    border-bottom: 2px solid var(--brand-dark);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.magazine-logo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: var(--brand-dark);
+}
+
+.article-headline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--brand-dark);
+}
+
+/* ==========================================================================
+   VÙNG 1: AUTHOR META-INFO (Giải pháp: Modern Flexbox)
+   Thay thế: float: left; float: right; overflow: hidden;
+   Ưu điểm: Căn giữa theo trục dọc tuyệt đối (align-items: center),
+            phân bố 2 đầu (justify-content: space-between),
+            tự động bẻ dòng trên mobile (flex-wrap: wrap).
+   ========================================================================== */
+.author-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.author-info-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--brand-primary);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+    flex-shrink: 0;
+}
+
+.author-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--brand-dark);
+}
+
+.author-meta {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.meta-dot {
+    font-weight: bold;
+    color: #cbd5e1;
+}
+
+.share-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.share-buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.45rem 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.share-buttons .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   VÙNG 2: MOSAIC GALLERY (Giải pháp: CSS Grid 2D)
+   Thay thế: position: relative; height: 400px; position: absolute;
+   Ưu điểm: Bảo toàn luồng tài liệu (Normal Flow), tự động tính chiều cao,
+            tỷ lệ 2fr : 1fr bất đối xứng mượt mà, không bao giờ đè lấn text.
+   ========================================================================== */
+.mosaic-gallery {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 240px 240px;
+    grid-template-areas:
+        "main sub1"
+        "main sub2";
+    gap: 16px;
+    margin-bottom: 2.5rem;
+}
+
+.photo-main {
+    grid-area: main;
+}
+
+.photo-sub-1 {
+    grid-area: sub1;
+}
+
+.photo-sub-2 {
+    grid-area: sub2;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    background-color: #0f172a;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+
+.gallery-item:hover .gallery-img {
+    transform: scale(1.06);
+    filter: brightness(0.9);
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.25rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    pointer-events: none;
+}
+
+.gallery-caption .caption-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.gallery-caption .caption-sub {
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: 0.85;
+}
+
+/* Responsive Mosaic Gallery for Tablet & Mobile */
+@media (max-width: 768px) {
+    .mosaic-gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "main"
+            "sub1"
+            "sub2";
+        gap: 14px;
+    }
+
+    .gallery-item.photo-main {
+        height: 300px;
+    }
+
+    .gallery-item.photo-sub-1,
+    .gallery-item.photo-sub-2 {
+        height: 200px;
+    }
+}
+
+/* Article Body Typography (Kiểm chứng văn bản không bị đè lấn) */
+.article-lead {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #334155;
+    line-height: 1.75;
+}
+
+.article-lead::first-letter {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.5rem;
+    float: left;
+    line-height: 0.8;
+    padding-right: 0.6rem;
+    padding-top: 0.3rem;
+    font-weight: 800;
+    color: var(--brand-primary);
+}
+
+.pull-quote {
+    border-left: 4px solid var(--brand-primary);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background-color: var(--brand-light);
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    color: #334155;
+}
+
+/* ==========================================================================
+   VÙNG 3: RECOMMENDED ARTICLES (Giải pháp: Bootstrap 5 Grid)
+   Thay thế: float: left; width: 23%; margin: 1%;
+   Ưu điểm: Tự động tính toán theo 12 cột Bootstrap chuẩn mực,
+            Desktop: 4 thẻ (col-lg-3), Tablet: 2 thẻ (col-md-6), Mobile: 1 thẻ (col-12),
+            kèm khoảng cách đều đặn qua lớp tiện ích (g-4), không bao giờ rớt dòng méo mó.
+   ========================================================================== */
+.article-card-item {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.article-card-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+.article-thumb {
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.article-card-item:hover .article-thumb {
+    transform: scale(1.04);
+}
+
+/* Comparative Legacy vs Modern Inspector Mode */
+.legacy-mode .author-section {
+    display: block !important;
+    overflow: hidden !important;
+    margin-bottom: 20px !important;
+    border-bottom: 1px solid #ccc !important;
+    padding-bottom: 10px !important;
+}
+.legacy-mode .author-avatar {
+    float: left !important;
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    border: none !important;
+    background: #ddd !important;
+}
+.legacy-mode .author-details {
+    float: left !important;
+    margin-left: 15px !important;
+    margin-top: 5px !important;
+    display: block !important;
+}
+.legacy-mode .share-buttons {
+    float: right !important;
+    margin-top: 15px !important;
+    display: block !important;
+}
+.legacy-mode .mosaic-gallery {
+    display: block !important;
+    position: relative !important;
+    height: 400px !important;
+    width: 100% !important;
+    margin-bottom: 30px !important;
+}
+.legacy-mode .photo-main {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 65% !important;
+    height: 100% !important;
+    background: #ff9999 !important;
+}
+.legacy-mode .photo-sub-1 {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 33% !important;
+    height: 48% !important;
+    background: #99ccff !important;
+}
+.legacy-mode .photo-sub-2 {
+    position: absolute !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    width: 33% !important;
+    height: 48% !important;
+    background: #99ff99 !important;
+}
+.legacy-mode .recommended-section .row {
+    display: block !important;
+}
+.legacy-mode .recommended-section [class*="col-"] {
+    float: left !important;
+    width: 23% !important;
+    margin: 1% !important;
+    padding: 0 !important;
+}

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreativeChronicle - The Renaissance of Generative Aesthetics</title>
+    <!-- Bootstrap 5.3.3 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts: Playfair Display (Serif) & Plus Jakarta Sans (Sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom Modern Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- TOP AUDIT NOTICE & INTERACTIVE DEMO TOOLBAR -->
+    <header class="bg-dark text-white py-2 px-3 border-bottom border-secondary border-opacity-25 sticky-top shadow-sm">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2 small">
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-primary rounded-pill px-2 py-1 fw-bold">REFACTORED</span>
+                <span class="fw-semibold">CreativeChronicle Magazine UI Modernization</span>
+                <span class="text-secondary d-none d-md-inline">| Float &amp; Absolute Nightmare Rescued</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <button id="toggleModeBtn" class="btn btn-sm btn-outline-warning rounded-pill px-3 py-1 fw-semibold" onclick="toggleLayoutMode()">
+                    <i class="bi bi-arrow-left-right me-1"></i>Xem lại Legacy Mode (Lỗi Float/Absolute)
+                </button>
+                <span id="currentModeBadge" class="badge bg-success rounded-pill px-2 py-1">Modern: Flexbox + Grid + Bootstrap</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-5" style="max-width: 1040px;">
+
+        <!-- MAGAZINE MASTHEAD -->
+        <div class="magazine-header text-center">
+            <div class="d-flex justify-content-between align-items-center text-muted small text-uppercase mb-2 pb-2 border-bottom border-light-subtle">
+                <span>Vol. XXIV &bull; Issue 10</span>
+                <span>International Journal of Contemporary Arts</span>
+                <span>October 2026</span>
+            </div>
+            <h1 class="magazine-logo display-3 my-2">CreativeChronicle</h1>
+            <p class="text-muted text-uppercase tracking-wider small mb-0">Curating the Nexus of High Art, Spatial Computation &amp; Aesthetic Philosophy</p>
+        </div>
+
+        <!-- ARTICLE HERO TITLE & CATEGORY -->
+        <div class="text-center mb-4 mt-5">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-2 fw-bold text-uppercase mb-3">
+                Digital Aesthetics &amp; Fine Arts
+            </span>
+            <h1 class="article-headline display-5 fw-bold mb-3">
+                The Renaissance of Generative Aesthetics: Where Human Intuition Meets Algorithmic Splendor
+            </h1>
+            <p class="lead text-secondary mx-auto" style="max-width: 820px;">
+                An exhaustive critical review into the emerging renaissance of algorithmic abstraction, computational sculpture, and how contemporary curators are redefining exhibition spaces in the post-digital epoch.
+            </p>
+        </div>
+
+        <!-- ==========================================================================
+             VÙNG 1: AUTHOR META-INFO (Gỡ bỏ Float -> Áp dụng Flexbox)
+             LỖI CŨ: Dùng float: left (avatar, details) và float: right (share buttons).
+                     Không thể căn giữa theo trục dọc (vertical alignment), tên dài gây lệch hàng.
+             GIẢI PHÁP: display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+                        Bọc avatar + details vào một flex-container con, tự động thẳng hàng tuyệt đối.
+             ========================================================================== -->
+        <div class="author-section" id="authorSection">
+            <!-- Left Flex Group: Avatar + Details -->
+            <div class="author-info-group">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" 
+                     class="author-avatar" 
+                     alt="Jane Doe">
+                <div class="author-details">
+                    <h5 class="author-name">Jane Doe</h5>
+                    <div class="author-meta">
+                        <span>Lead Curator &amp; Art Critic</span>
+                        <span class="meta-dot">&bull;</span>
+                        <span>Published on Oct 25, 2026</span>
+                        <span class="meta-dot d-none d-sm-inline">&bull;</span>
+                        <span class="d-none d-sm-inline"><i class="bi bi-clock me-1"></i>5 min read</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Flex Group: Share & Action Buttons (Aligned Vertically) -->
+            <div class="share-buttons">
+                <button class="btn btn-outline-primary btn-sm rounded-pill" title="Share on Facebook">
+                    <i class="bi bi-facebook"></i>
+                    <span>Share Facebook</span>
+                </button>
+                <button class="btn btn-outline-dark btn-sm rounded-pill" title="Share on X / Twitter">
+                    <i class="bi bi-twitter-x"></i>
+                    <span>Tweet</span>
+                </button>
+                <button class="btn btn-outline-secondary btn-sm rounded-pill" title="Save article">
+                    <i class="bi bi-bookmark"></i>
+                    <span>Save</span>
+                </button>
+                <button class="btn btn-outline-secondary btn-sm rounded-pill" title="Copy article URL">
+                    <i class="bi bi-link-45deg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+             VÙNG 2: MOSAIC GALLERY (Gỡ bỏ Position: Absolute & Height cứng -> Áp dụng CSS Grid)
+             LỖI CŨ: .mosaic-gallery { position: relative; height: 400px; }
+                     .photo-main, .photo-sub-1, .photo-sub-2 dùng position: absolute.
+                     Bị tách khỏi luồng tài liệu (normal flow), trên mobile các ảnh đè bẹp lên nhau
+                     và che khuất hoàn toàn nội dung bài báo bên dưới.
+             GIẢI PHÁP: display: grid; grid-template-columns: 2fr 1fr; grid-template-areas: "main sub1" "main sub2";
+                        Ảnh chính chiếm 2 hàng bên trái, 2 ảnh phụ xếp chồng bên phải.
+                        Tự động tính chiều cao, trên mobile chuyển về 1 cột dọc (1fr), không bao giờ đè text!
+             ========================================================================== -->
+        <div class="mosaic-gallery" id="mosaicGallery">
+            <!-- Ảnh chính (Main Photo) - Chiếm 2fr và 2 hàng -->
+            <div class="gallery-item photo-main">
+                <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=1000&auto=format&fit=crop&q=80" 
+                     class="gallery-img" 
+                     alt="Main Artwork - Kinetic Chromatics">
+                <div class="gallery-caption">
+                    <span class="badge bg-primary rounded-pill mb-1 align-self-start">Featured Masterpiece</span>
+                    <p class="caption-title">Kinetic Chromatics in Dimensional Space</p>
+                    <p class="caption-sub">Oil on canvas and generative holographic projection by Elena Rostova (2026)</p>
+                </div>
+            </div>
+
+            <!-- Ảnh phụ 1 (Sub Photo 1) - Hàng trên bên phải -->
+            <div class="gallery-item photo-sub-1">
+                <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&auto=format&fit=crop&q=80" 
+                     class="gallery-img" 
+                     alt="Sub Artwork 1 - Architectural Echoes">
+                <div class="gallery-caption">
+                    <p class="caption-title">Architectural Echoes</p>
+                    <p class="caption-sub">Digital acrylic on titanium composite</p>
+                </div>
+            </div>
+
+            <!-- Ảnh phụ 2 (Sub Photo 2) - Hàng dưới bên phải -->
+            <div class="gallery-item photo-sub-2">
+                <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=600&auto=format&fit=crop&q=80" 
+                     class="gallery-img" 
+                     alt="Sub Artwork 2 - Geometric Solitude">
+                <div class="gallery-caption">
+                    <p class="caption-title">Geometric Solitude</p>
+                    <p class="caption-sub">Minimalist spatial resonance study</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ARTICLE BODY (Minh chứng trực quan: Không bao giờ bị đè lấn sau khi dùng Grid) -->
+        <article class="article-content my-5">
+            <div class="alert alert-success d-flex align-items-center gap-3 rounded-4 shadow-sm py-3 px-4 mb-4" role="alert">
+                <i class="bi bi-shield-check fs-2 text-success"></i>
+                <div>
+                    <h6 class="alert-heading fw-bold mb-1">Kiểm chứng chuẩn xác (Stress Test Verified):</h6>
+                    <small class="mb-0">
+                        Nhờ thay thế <code>position: absolute</code> bằng <strong>CSS Grid</strong>, phần tử <code>.mosaic-gallery</code> được bảo toàn nguyên vẹn trong <strong>Normal Document Flow</strong>. Khi thu hẹp màn hình về Mobile (375px), Grid tự động dãn nở chiều cao tự nhiên và đẩy đoạn văn bản này xuống dưới một cách chuẩn xác, triệt tiêu 100% hiện tượng đè lấn chữ!
+                    </small>
+                </div>
+            </div>
+
+            <p class="article-lead">
+                In the sprawling landscape of twenty-first-century artistic expression, the demarcation between computational generative systems and organic human intention has dissolved into an intoxicating continuum of pure form and harmonic light. What curators once dismissed as mere algorithmic repetition has blossomed into an authentic visual grammar that demands rigorous academic scrutiny.
+            </p>
+
+            <p>
+                When examining the kinetic masterworks displayed in our curated gallery above, the observer is immediately confronted with an intricate choreography of tactile physical pigments synthesized alongside deterministic mathematical arrays. Elena Rostova’s central canvas operates not as a static artifact, but as a breathing spatial presence whose color spectrum shifts subtly in response to ambient gallery luminosity.
+            </p>
+
+            <blockquote class="pull-quote">
+                "The algorithm does not displace the soul of the painter; it merely expands the chromatic vocabulary from the physical limits of ground mineral oxides into the boundless expanse of quantum probability."
+                <footer class="mt-2 text-end fw-semibold text-primary">— Prof. Marcus Sterling, Oxford Art Symposium</footer>
+            </blockquote>
+
+            <p>
+                As we venture deeper into this paradigm shift, the architectural container itself must adapt. Digital art manifests not merely on flat panels, but through responsive, living geometries that accommodate multi-sensory immersion. The legacy frameworks of rigid absolute positioning are fundamentally obsolete in an era where digital culture breathes dynamically across diverse screens, devices, and experiential dimensions.
+            </p>
+        </article>
+
+        <!-- ==========================================================================
+             VÙNG 3: RECOMMENDED ARTICLES (Gỡ bỏ Float + width: 23% -> Áp dụng Bootstrap Grid)
+             LỖI CŨ: .recommended-section { clear: both; overflow: hidden; }
+                     .article-card { float: left; width: 23%; margin: 1%; }
+                     Khi xem trên iPad/Tablet màn hình hẹp, thẻ thứ 4 bị rớt dòng méo mó,
+                     không có responsive breakpoints.
+             GIẢI PHÁP: <div class="row g-4"> kết hợp <div class="col-12 col-md-6 col-lg-3">
+                        Desktop: 4 cột chuẩn xác (12 / 3 = 4).
+                        Tablet: 2 cột mỗi hàng (12 / 6 = 2) ngăn nắp, cân đối.
+                        Mobile: 1 cột xếp chồng (col-12) tối ưu trải nghiệm đọc vuốt chạm.
+             ========================================================================== -->
+        <section class="recommended-section mt-5 pt-4 border-top" id="recommendedSection">
+            <div class="d-flex flex-wrap justify-content-between align-items-end mb-4">
+                <div>
+                    <span class="text-primary fw-bold text-uppercase small tracking-wide">Curated For You</span>
+                    <h3 class="fw-bold mb-0">Recommended Articles</h3>
+                </div>
+                <a href="#" class="text-decoration-none fw-semibold text-primary d-inline-flex align-items-center gap-1 mt-2 mt-sm-0">
+                    <span>Explore full archive</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Bootstrap 5 Responsive Grid Row -->
+            <div class="row g-4">
+                <!-- CARD 1 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden article-card-item">
+                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500&auto=format&fit=crop&q=80" 
+                             class="card-img-top article-thumb" 
+                             alt="Brutalist Design">
+                        <div class="card-body d-flex flex-column p-3">
+                            <span class="badge bg-primary-subtle text-primary border border-primary-subtle mb-2 align-self-start rounded-pill">
+                                Architecture
+                            </span>
+                            <h6 class="card-title fw-bold text-dark mb-2">
+                                Concrete &amp; Code: Brutalist Aesthetics
+                            </h6>
+                            <p class="card-text text-muted small flex-grow-1">
+                                Rediscovering the raw, unpolished monolithic geometry in post-modern structural theory.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top small text-muted">
+                                <span>Oct 22, 2026</span>
+                                <a href="#" class="text-primary text-decoration-none fw-bold">Read &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden article-card-item">
+                        <img src="https://images.unsplash.com/photo-1549887534-1541e9326642?w=500&auto=format&fit=crop&q=80" 
+                             class="card-img-top article-thumb" 
+                             alt="Color Theory">
+                        <div class="card-body d-flex flex-column p-3">
+                            <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle mb-2 align-self-start rounded-pill">
+                                Color Science
+                            </span>
+                            <h6 class="card-title fw-bold text-dark mb-2">
+                                The OKLCH Spectrum in Modern Galleries
+                            </h6>
+                            <p class="card-text text-muted small flex-grow-1">
+                                How perceptual uniformity in digital color spaces transforms virtual art curation.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top small text-muted">
+                                <span>Oct 19, 2026</span>
+                                <a href="#" class="text-primary text-decoration-none fw-bold">Read &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden article-card-item">
+                        <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=500&auto=format&fit=crop&q=80" 
+                             class="card-img-top article-thumb" 
+                             alt="Sculpture and AI">
+                        <div class="card-body d-flex flex-column p-3">
+                            <span class="badge bg-success-subtle text-success-emphasis border border-success-subtle mb-2 align-self-start rounded-pill">
+                                Sculpture
+                            </span>
+                            <h6 class="card-title fw-bold text-dark mb-2">
+                                Robotic Milling of Carrara Marble
+                            </h6>
+                            <p class="card-text text-muted small flex-grow-1">
+                                Merging Italian Renaissance stonecraft with robotic multi-axis computational sculpting.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top small text-muted">
+                                <span>Oct 15, 2026</span>
+                                <a href="#" class="text-primary text-decoration-none fw-bold">Read &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden article-card-item">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&auto=format&fit=crop&q=80" 
+                             class="card-img-top article-thumb" 
+                             alt="Sensory Interfaces">
+                        <div class="card-body d-flex flex-column p-3">
+                            <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle mb-2 align-self-start rounded-pill">
+                                Future Media
+                            </span>
+                            <h6 class="card-title fw-bold text-dark mb-2">
+                                Spatial Audio in Virtual Pavilions
+                            </h6>
+                            <p class="card-text text-muted small flex-grow-1">
+                                Immersive acoustics engineering designed for speculative virtual architectural spaces.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top small text-muted">
+                                <span>Oct 11, 2026</span>
+                                <a href="#" class="text-primary text-decoration-none fw-bold">Read &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="mt-5 pt-4 pb-3 border-top text-center text-muted small">
+            <p class="mb-1">&copy; 2026 CreativeChronicle Media Group. Refactored with Semantic HTML5, Flexbox, CSS Grid &amp; Bootstrap 5.</p>
+            <p class="text-secondary opacity-75">CodeGym Frontend UI Modernization Assignment &bull; Developed by Jane Doe</p>
+        </footer>
+
+    </div>
+
+    <!-- Bootstrap 5.3.3 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Interactive Demonstration Script: Toggle Between Legacy & Modern Modes -->
+    <script>
+        function toggleLayoutMode() {
+            const body = document.body;
+            const btn = document.getElementById('toggleModeBtn');
+            const badge = document.getElementById('currentModeBadge');
+
+            if (body.classList.contains('legacy-mode')) {
+                // Switch back to Modern Mode
+                body.classList.remove('legacy-mode');
+                btn.innerHTML = '<i class="bi bi-arrow-left-right me-1"></i>Xem lại Legacy Mode (Lỗi Float/Absolute)';
+                btn.className = 'btn btn-sm btn-outline-warning rounded-pill px-3 py-1 fw-semibold';
+                badge.className = 'badge bg-success rounded-pill px-2 py-1';
+                badge.textContent = 'Modern: Flexbox + Grid + Bootstrap';
+            } else {
+                // Switch to Legacy Mode to show the Art Director the historical bugs
+                body.classList.add('legacy-mode');
+                btn.innerHTML = '<i class="bi bi-check-circle me-1"></i>Kích hoạt Modern Mode (Đã sửa xong)';
+                btn.className = 'btn btn-sm btn-warning text-dark rounded-pill px-3 py-1 fw-bold';
+                badge.className = 'badge bg-danger rounded-pill px-2 py-1';
+                badge.textContent = 'Legacy: Lỗi Float & Absolute (10 năm trước)';
+            }
+        }
+    </script>
+
+</body>
+</html>
