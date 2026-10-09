@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Microsoft Surface Store - Minimal Custom Stylesheet
+   Follows CodeGym assignment guideline:
+   "Tận dụng tối đa các thành phần của Bootstrap, hạn chế việc viết thêm CSS mới."
+   ========================================================================== */
+
+/* 1. Global Typography & Smooth Behavior */
+:root {
+    --bs-font-sans-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: var(--bs-font-sans-serif);
+}
+
+body {
+    font-family: var(--bs-font-sans-serif);
+    color: #1e293b;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fw-extrabold {
+    font-weight: 800;
+}
+
+/* 2. Hero Carousel Custom Background Gradients & Heights */
+.hero-slide {
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+}
+
+.slide-pro {
+    background: linear-gradient(135deg, #0a192f 0%, #1e3a8a 60%, #172554 100%);
+}
+
+.slide-laptop {
+    background: linear-gradient(135deg, #0f172a 0%, #064e3b 60%, #022c22 100%);
+}
+
+.slide-studio {
+    background: linear-gradient(135deg, #18181b 0%, #312e81 60%, #1e1b4b 100%);
+}
+
+.hero-img {
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s ease;
+}
+
+.hero-img:hover {
+    transform: scale(1.02);
+}
+
+/* 3. Category Quick Navigation Hover Micro-interactions */
+.category-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    cursor: pointer;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.08) !important;
+    background-color: #ffffff !important;
+}
+
+/* 4. Product Card Hover Polish & Image Aspect Ratio */
+.product-card {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 1.25rem 2rem rgba(0, 0, 0, 0.1) !important;
+}
+
+.product-img {
+    height: 190px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.06);
+}
+
+/* 5. Accordion Polishing */
+.accordion-button:not(.collapsed) {
+    color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.06);
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
