@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidsToon - Thế Giới Phim Hoạt Hình Trực Tuyến Cho Trẻ Em</title>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- 1. HEADER (MỨC 2: CỐ ĐỊNH STICKY KHI CUỘN TRANG) -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo bên trái -->
+            <div class="logo-wrapper">
+                <div class="logo-icon">🎬</div>
+                <div class="logo-text">
+                    <span class="logo-main">KidsToon</span>
+                    <span class="logo-sub">Hoạt Hình An Toàn</span>
+                </div>
+            </div>
+
+            <!-- Thanh tìm kiếm phim hoạt hình theo tên -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="🔍 Nhập tên phim hoạt hình để tìm kiếm..." onkeyup="filterVideos()">
+                <button type="button" class="search-btn">Tìm Kiếm</button>
+            </div>
+
+            <!-- Huy hiệu an toàn cho trẻ -->
+            <div class="safe-badge">
+                <span class="safe-icon">🛡️</span>
+                <span>100% An Toàn Cho Trẻ Em</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. HEAD-LINK: THANH ĐIỀU HƯỚNG LIÊN KẾT TRANG -->
+    <nav class="head-link">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-item active">🏠 Trang Chủ</a></li>
+                <li><a href="#" class="nav-item" onclick="sortVideos('newest')">✨ Phim Mới Cập Nhật</a></li>
+                <li><a href="#" class="nav-item" onclick="sortVideos('popular')">🔥 Xem Nhiều Nhất</a></li>
+                <li><a href="#" class="nav-item">📚 Cổ Tích & Giáo Dục</a></li>
+                <li><a href="#" class="nav-item">🚀 Hoạt Hình 3D</a></li>
+                <li><a href="#" class="nav-item">⭐ Phim Được Yêu Thích</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 3. MAIN CONTENT: BỐ CỤC CHÍNH CHIA THÀNH LEFT CONTENT VÀ RIGHT CONTENT -->
+    <main class="content-wrapper">
+        <div class="content-container">
+
+            <!-- LEFT CONTENT: MENU DANH SÁCH CÁC VIDEO CÓ SẴN (PLAYLIST) -->
+            <aside class="left-content">
+                <div class="playlist-header">
+                    <h3>📋 Danh Sách Phim</h3>
+                    <span class="badge-count" id="videoCount">5 Phim</span>
+                </div>
+
+                <div class="playlist-tabs">
+                    <button class="tab-btn active" id="tabAll" onclick="filterCategory('all', this)">Tất Cả</button>
+                    <button class="tab-btn" onclick="filterCategory('cotich', this)">Cổ Tích</button>
+                    <button class="tab-btn" onclick="filterCategory('3d', this)">Hoạt Hình 3D</button>
+                </div>
+
+                <!-- Danh sách các thẻ video (chọn để phát ở cột bên phải) -->
+                <ul class="video-list" id="videoList">
+                    <!-- Mục 1: Mặc định được chọn -->
+                    <li class="video-item active" onclick="selectVideo(0, this)">
+                        <div class="thumb-box">
+                            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=300&auto=format&fit=crop&q=60" alt="Doraemon">
+                            <span class="duration-tag">12:45</span>
+                        </div>
+                        <div class="video-info">
+                            <h4 class="video-title">Doraemon: Chú Mèo Máy Đến Từ Tương Lai</h4>
+                            <div class="video-meta">
+                                <span class="tag-badge badge-vn">Thuyết Minh</span>
+                                <span class="views">👁️ 152k lượt xem</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Mục 2 -->
+                    <li class="video-item" onclick="selectVideo(1, this)">
+                        <div class="thumb-box">
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300&auto=format&fit=crop&q=60" alt="Tom and Jerry">
+                            <span class="duration-tag">09:30</span>
+                        </div>
+                        <div class="video-info">
+                            <h4 class="video-title">Tom & Jerry: Trận Chiến Phô Mai Vui Nhộn</h4>
+                            <div class="video-meta">
+                                <span class="tag-badge badge-hd">HD 1080p</span>
+                                <span class="views">👁️ 240k lượt xem</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Mục 3 -->
+                    <li class="video-item" onclick="selectVideo(2, this)">
+                        <div class="thumb-box">
+                            <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=300&auto=format&fit=crop&q=60" alt="Co Tich">
+                            <span class="duration-tag">15:10</span>
+                        </div>
+                        <div class="video-info">
+                            <h4 class="video-title">Cổ Tích Việt Nam: Cây Tre Trăm Đốt</h4>
+                            <div class="video-meta">
+                                <span class="tag-badge badge-vn">Audio Việt</span>
+                                <span class="views">👁️ 98k lượt xem</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Mục 4 -->
+                    <li class="video-item" onclick="selectVideo(3, this)">
+                        <div class="thumb-box">
+                            <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=300&auto=format&fit=crop&q=60" alt="Big Buck Bunny">
+                            <span class="duration-tag">10:34</span>
+                        </div>
+                        <div class="video-info">
+                            <h4 class="video-title">Chú Thỏ Khổng Lồ: Big Buck Bunny 3D</h4>
+                            <div class="video-meta">
+                                <span class="tag-badge badge-hd">FullHD</span>
+                                <span class="views">👁️ 185k lượt xem</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Mục 5 -->
+                    <li class="video-item" onclick="selectVideo(4, this)">
+                        <div class="thumb-box">
+                            <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=300&auto=format&fit=crop&q=60" alt="Su Tich">
+                            <span class="duration-tag">11:20</span>
+                        </div>
+                        <div class="video-info">
+                            <h4 class="video-title">Sự Tích Quả Dưa Hấu (Mai An Tiêm)</h4>
+                            <div class="video-meta">
+                                <span class="tag-badge badge-vn">Thuyết Minh</span>
+                                <span class="views">👁️ 110k lượt xem</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- RIGHT CONTENT: NỘI DUNG VIDEO ĐƯỢC CHỌN TỪ MENU -->
+            <section class="right-content">
+                <!-- Bộ chọn chế độ phát: Thẻ HTML5 <video> gốc hoặc nhúng Youtube <iframe> -->
+                <div class="player-controls-bar">
+                    <div class="player-type-toggle">
+                        <span class="toggle-label">Chế độ xem:</span>
+                        <button class="toggle-btn active" id="btnHtml5Video" onclick="switchPlayerMode('html5')">
+                            📼 Trình Phát HTML5 &lt;video&gt;
+                        </button>
+                        <button class="toggle-btn" id="btnYoutubeIframe" onclick="switchPlayerMode('youtube')">
+                            ▶️ Nhúng YouTube &lt;iframe&gt;
+                        </button>
+                    </div>
+
+                    <div class="quality-tag">
+                        <span>⚡ Server Riêng: Tải Cực Nhanh - Không Quảng Cáo</span>
+                    </div>
+                </div>
+
+                <!-- Khung trình phát Video chính -->
+                <div class="player-box">
+                    <!-- 1. Trình phát dùng thẻ HTML5 <video> (Mặc định hiển thị) -->
+                    <div id="html5PlayerWrapper" class="video-container">
+                        <video id="mainVideoPlayer" controls poster="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1000&auto=format&fit=crop&q=80">
+                            <source id="videoSource" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ thẻ video HTML5.
+                        </video>
+                    </div>
+
+                    <!-- 2. Trình phát nhúng YouTube <iframe> (Ẩn mặc định, bật khi chọn chế độ YouTube) -->
+                    <div id="youtubePlayerWrapper" class="video-container iframe-container" style="display: none;">
+                        <iframe id="mainYoutubeIframe" 
+                                src="https://www.youtube.com/embed/aqz-KE-bpKQ?rel=0" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Chi tiết thông tin phim đang phát -->
+                <div class="video-detail-card">
+                    <div class="detail-header">
+                        <h2 id="currentVideoTitle">Doraemon: Chú Mèo Máy Đến Từ Tương Lai (Tập 1 - Thuyết Minh)</h2>
+                        <div class="action-buttons">
+                            <button class="act-btn">❤️ Yêu thích</button>
+                            <button class="act-btn">↗️ Chia sẻ</button>
+                            <button class="act-btn">⬇️ Tải về</button>
+                        </div>
+                    </div>
+
+                    <div class="detail-tags">
+                        <span class="tag-pill pill-green">🟢 Audio Thuyết Minh Tiếng Việt</span>
+                        <span class="tag-pill pill-blue">HD 1080p</span>
+                        <span class="tag-pill pill-purple">Lứa tuổi: Mầm non & Tiểu học</span>
+                        <span class="tag-pill pill-gold">⭐ 4.9/5 (1.2k đánh giá)</span>
+                    </div>
+
+                    <div class="synopsis-box">
+                        <h3>Nội dung tóm tắt:</h3>
+                        <p id="currentVideoDesc">
+                            Chú mèo máy Doraemon đến từ thế kỷ 22 với chiếc túi thần kỳ chứa hàng trăm bảo bối độc đáo, đồng hành cùng cậu bé Nobita vụng về nhưng giàu lòng nhân ái. Bộ phim mang thông điệp giáo dục sâu sắc về tình bạn, lòng dũng cảm và tinh thần tự lập dành cho trẻ nhỏ.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- 4. FOOTER: BẢN QUYỀN VÀ THÔNG TIN AN TOÀN -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo-wrapper">
+                    <span class="logo-icon">🎬</span>
+                    <span class="logo-main" style="color: #ffffff;">KidsToon</span>
+                </div>
+                <p class="footer-about">
+                    Cổng xem phim hoạt hình trực tuyến an toàn hàng đầu cho trẻ em Việt Nam. 100% nội dung được chọn lọc, lồng tiếng / thuyết minh chất lượng cao, tuyệt đối không có quảng cáo độc hại.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Chuyên Mục</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Hoạt hình cổ tích Việt Nam</a></li>
+                    <li><a href="#">Phim hoạt hình 3D quốc tế</a></li>
+                    <li><a href="#">Học tiếng Anh qua phim hoạt hình</a></li>
+                    <li><a href="#">Bài học đạo đức cho trẻ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Chính Sách & Cam Kết</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Cam kết an toàn nội dung trẻ em</a></li>
+                    <li><a href="#">Bản quyền & nguồn gốc phim</a></li>
+                    <li><a href="#">Điều khoản bảo vệ dữ liệu trẻ nhỏ</a></li>
+                    <li><a href="#">Góp ý nội dung cho phụ huynh</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 KidsToon. Bài tập phát triển trang web xem hoạt hình trực tuyến - CodeGym Web Development.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript xử lý tương tác chọn phim, đổi player và tìm kiếm -->
+    <script src="app.js"></script>
+
+</body>
+</html>
