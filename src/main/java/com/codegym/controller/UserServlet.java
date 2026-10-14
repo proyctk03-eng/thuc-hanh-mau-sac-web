@@ -91,6 +91,9 @@ public class UserServlet extends HttpServlet {
                 case "test-without-tran":
                     testWithoutTran(request, response);
                     break;
+                case "test-use-tran":
+                    testUseTran(request, response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
@@ -102,7 +105,11 @@ public class UserServlet extends HttpServlet {
 
     private void listUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<User> listUser = userDAO.selectAllUsers();
+        // [Bài tập] Gọi Stored Procedure select_all_users từ JDBC sử dụng CallableStatement
+        List<User> listUser = userDAO.selectAllUsersSP();
+        if (listUser == null || listUser.isEmpty()) {
+            listUser = userDAO.selectAllUsers();
+        }
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
         dispatcher.forward(request, response);
@@ -158,16 +165,19 @@ public class UserServlet extends HttpServlet {
         String country = request.getParameter("country");
 
         User user = new User(id, name, email, country);
-        userDAO.updateUser(user);
+        // [Bài tập] Gọi Stored Procedure update_user từ JDBC sử dụng CallableStatement
+        userDAO.updateUserSP(user);
         response.sendRedirect("users");
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
-        userDAO.deleteUser(id);
+        // [Bài tập] Gọi Stored Procedure delete_user từ JDBC sử dụng CallableStatement
+        userDAO.deleteUserSP(id);
         response.sendRedirect("users");
     }
+
 
     private void searchByCountry(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
@@ -197,6 +207,15 @@ public class UserServlet extends HttpServlet {
         userDAO.insertUpdateWithoutTransaction();
         System.out.println("Đã chạy xong hàm testWithoutTran. Hãy kiểm tra database!");
         request.setAttribute("message", "Đã thực thi hàm testWithoutTran. Hãy kiểm tra console để thấy ngoại lệ và kiểm tra bảng Employee trong database (SELECT * FROM Employee;) để quan sát hiện tượng rác dữ liệu!");
+        listUser(request, response);
+    }
+
+    private void testUseTran(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        // Goi phuong thuc co su dung Transaction dam bao nguyen ly All-or-Nothing
+        userDAO.insertUpdateUseTransaction();
+        System.out.println("Hoàn tất gọi hàm testUseTran!");
+        request.setAttribute("message", "Đã thực thi hàm testUseTran có sử dụng Transaction. Dữ liệu bảng Employee đã được ghi nhận thành công và toàn vẹn!");
         listUser(request, response);
     }
 }

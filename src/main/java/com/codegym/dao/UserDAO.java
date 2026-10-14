@@ -305,7 +305,112 @@ public class UserDAO implements IUserDAO {
         }
     }
 
+    // Thuc thi tap lenh co su dung Transaction (Dam bao nguyen ly All-or-Nothing)
+    @Override
+    public void insertUpdateUseTransaction() {
+        try (Connection conn = getConnection();
+             Statement statement = conn.createStatement();
+             PreparedStatement psInsert = conn.prepareStatement(SQL_INSERT);
+             PreparedStatement psUpdate = conn.prepareStatement(SQL_UPDATE)) {
+
+            statement.execute(SQL_TABLE_DROP);
+            statement.execute(SQL_TABLE_CREATE);
+
+            // ==========================================
+            // 1. BAT DAU TRANSACTION BLOCK
+            // Tat che do luu tu dong (autoCommit = false)
+            // ==========================================
+            conn.setAutoCommit(false);
+
+            // 2. Chay danh sach lenh Insert
+            psInsert.setString(1, "Quynh");
+            psInsert.setBigDecimal(2, new BigDecimal(10));
+            psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            psInsert.execute();
+
+            psInsert.setString(1, "Ngan");
+            psInsert.setBigDecimal(2, new BigDecimal(20));
+            psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            psInsert.execute();
+
+            // 3. Chay lenh Update
+            // Da sua loi tu index 2 sang index 1 theo buoc huong dan (fix bug)
+            psUpdate.setBigDecimal(1, new BigDecimal("999.99"));
+            psUpdate.setString(2, "Quynh");
+            psUpdate.execute();
+
+            // ==========================================
+            // 4. KET THUC TRANSACTION BLOCK
+            // Ghi du lieu khi tat ca cac cau lenh deu thanh cong
+            // ==========================================
+            conn.commit();
+
+            // Bat lai che do auto-commit ve mac dinh
+            conn.setAutoCommit(true);
+
+        } catch (Exception e) {
+            System.out.println("Loi xay ra, Transaction se tu dong huy bo (rollback) khi dong ket noi!");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    // ==============================================================
+    // [Bài tập] GỌI MYSQL STORED PROCEDURES TỪ JDBC DÙNG CALLABLESTATEMENT
+    // ==============================================================
+
+    // 1. Gọi Stored Procedure hiển thị danh sách users (select_all_users)
+    @Override
+    public List<User> selectAllUsersSP() {
+        List<User> users = new ArrayList<>();
+        String query = "{CALL select_all_users()}";
+        try (Connection connection = getConnection();
+             CallableStatement callableStatement = connection.prepareCall(query);
+             ResultSet rs = callableStatement.executeQuery()) {
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String country = rs.getString("country");
+                users.add(new User(id, name, email, country));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return users;
+    }
+
+    // 2. Gọi Stored Procedure sửa thông tin user (update_user)
+    @Override
+    public boolean updateUserSP(User user) throws SQLException {
+        boolean rowUpdated;
+        String query = "{CALL update_user(?, ?, ?, ?)}";
+        try (Connection connection = getConnection();
+             CallableStatement callableStatement = connection.prepareCall(query)) {
+            callableStatement.setInt(1, user.getId());
+            callableStatement.setString(2, user.getName());
+            callableStatement.setString(3, user.getEmail());
+            callableStatement.setString(4, user.getCountry());
+            rowUpdated = callableStatement.executeUpdate() > 0;
+        }
+        return rowUpdated;
+    }
+
+    // 3. Gọi Stored Procedure xoá user (delete_user)
+    @Override
+    public boolean deleteUserSP(int id) throws SQLException {
+        boolean rowDeleted;
+        String query = "{CALL delete_user(?)}";
+        try (Connection connection = getConnection();
+             CallableStatement callableStatement = connection.prepareCall(query)) {
+            callableStatement.setInt(1, id);
+            rowDeleted = callableStatement.executeUpdate() > 0;
+        }
+        return rowDeleted;
+    }
+
     private void printSQLException(SQLException ex) {
+
         for (Throwable e : ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);

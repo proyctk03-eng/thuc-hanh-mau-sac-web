@@ -40,35 +40,46 @@ BEGIN
 END$$
 DELIMITER ;
 
--- ============================================
--- PHẦN BỔ SUNG: BẢNG PHÂN QUYỀN VÀ TRANSACTION
--- ============================================
+-- ==============================================================
+-- [BÀI TẬP] GỌI MYSQL STORED PROCEDURES TỪ JDBC
+-- ==============================================================
 
--- 1. Tạo bảng Permission
-CREATE TABLE IF NOT EXISTS permission (
-    id INT(11) PRIMARY KEY,
-    name VARCHAR(50)
-);
+-- 3. Tao Stored Procedure select_all_users (Hiển thị danh sách users)
+DELIMITER $$
+DROP PROCEDURE IF EXISTS select_all_users$$
+CREATE PROCEDURE select_all_users()
+BEGIN
+    SELECT * FROM users ORDER BY id ASC;
+END$$
+DELIMITER ;
 
--- 2. Tạo bảng trung gian User_Permission
-CREATE TABLE IF NOT EXISTS user_permission (
-    user_id INT(11),
-    permission_id INT(11),
-    PRIMARY KEY(user_id, permission_id),
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (permission_id) REFERENCES permission(id) ON DELETE CASCADE
-);
+-- 4. Tao Stored Procedure update_user (Sửa thông tin user)
+DELIMITER $$
+DROP PROCEDURE IF EXISTS update_user$$
+CREATE PROCEDURE update_user(
+    IN user_id INT,
+    IN user_name VARCHAR(120),
+    IN user_email VARCHAR(220),
+    IN user_country VARCHAR(120)
+)
+BEGIN
+    UPDATE users
+    SET name = user_name, email = user_email, country = user_country
+    WHERE id = user_id;
+END$$
+DELIMITER ;
 
--- 3. Thêm dữ liệu mẫu cho bảng Permission
-INSERT IGNORE INTO permission(id, name) VALUES 
-(1, 'add'),
-(2, 'edit'),
-(3, 'delete'),
-(4, 'view');
+-- 5. Tao Stored Procedure delete_user (Xóa user)
+DELIMITER $$
+DROP PROCEDURE IF EXISTS delete_user$$
+CREATE PROCEDURE delete_user(IN user_id INT)
+BEGIN
+    DELETE FROM users WHERE id = user_id;
+END$$
+DELIMITER ;
 
--- ============================================
--- PHẦN BỔ SUNG: BẢNG EMPLOYEE (TEST WITHOUT TRANSACTION)
--- ============================================
+-- 6. Bang Employee cho thuc hanh Transaction
+
 CREATE TABLE IF NOT EXISTS Employee (
     id INT(11) AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
@@ -76,5 +87,3 @@ CREATE TABLE IF NOT EXISTS Employee (
     created_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
-
-

@@ -33,4 +33,12 @@ public interface IUserDAO {
 
     // Test With Transaction (JDBC Transaction All-or-Nothing)
     void insertUpdateUseTransaction();
+
+    // MySQL Stored Procedures (Exercise: List, Update, Delete)
+    List<User> selectAllUsersSP();
+
+    boolean updateUserSP(User user) throws SQLException;
+
+    boolean deleteUserSP(int id) throws SQLException;
 }
+
