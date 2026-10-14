@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Thực Hành "Nắn" Các Chiếc Hộp: Padding, Border & Margin
+   ========================================================================== */
+
+/* --- Universal Box-Sizing Reset --- */
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  background-color: #f8fafc;
+  color: #1e293b;
+  padding: 30px;
+  margin: 0;
+}
+
+h1 {
+  color: #0f172a;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+p {
+  color: #475569;
+  margin-bottom: 24px;
+}
+
+/* --- Thiết lập cơ bản cho các hộp --- */
+.box {
+  width: 250px;
+  height: 150px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #0f172a;
+  border-radius: 4px;
+}
+
+/* --- Hộp 1: Thử nghiệm padding chi tiết và viền trái --- */
+.box-1 {
+  background-color: lightskyblue;
+  /* Thuộc tính chi tiết ban đầu:
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 30px;
+  padding-left: 40px;
+  */
+  /* Cú pháp viết tắt (Shorthand 4 giá trị: Trên - Phải - Dưới - Trái) */
+  padding: 10px 20px 30px 40px;
+  /* Đường viền chấm bi màu đỏ ở cạnh trái */
+  border-left: 8px dotted red;
+}
+
+/* --- Hộp 2: Thử nghiệm margin và padding shorthand 2 giá trị --- */
+.box-2 {
+  background-color: lightsalmon;
+  margin-top: 60px; /* Đẩy ra xa hộp 1 một khoảng 60px */
+  margin-left: 100px; /* Đẩy ra xa cạnh trái màn hình 100px */
+  padding: 25px 50px; /* 2 giá trị: 25px cho trên/dưới, 50px cho trái/phải */
+}
