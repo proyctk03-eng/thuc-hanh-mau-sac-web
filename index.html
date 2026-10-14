@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phòng Thí Nghiệm DevTools - Mổ Xẻ Trang Web</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <span class="logo-badge">🔍 DevTools</span>
+                <span class="logo-text">Web Inspector Lab</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#about" class="nav-link">Giới thiệu</a>
+                <a href="#inspection" class="nav-link">Thực hành Inspect</a>
+                <a href="#responsive" class="nav-link">Mobile View</a>
+                <a href="#contact" class="nav-link cta-link">Báo cáo</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 id="hero-title" class="hero-title">Khám Phá Thế Giới Ngầm Của Trang Web</h1>
+            <p id="hero-subtitle" class="hero-desc">
+                Chào mừng bạn đến với phòng thí nghiệm mổ xẻ cấu trúc Web. Bấm F12 hoặc Click chuột phải chọn "Inspect" (Kiểm tra) để bắt đầu truy tìm các bí mật HTML & CSS!
+            </p>
+            <div class="action-group">
+                <button id="inspect-btn" class="btn btn-primary" onclick="alert('Hãy mở DevTools (F12) để xem mã nguồn của nút này!')">
+                    Mở Trình Kiểm Tra (F12)
+                </button>
+                <a href="#inspection" class="btn btn-secondary">Xem bài tập mẫu</a>
+            </div>
+        </section>
+
+        <!-- Inspection Grid -->
+        <section id="inspection" class="inspection-section">
+            <h2 class="section-title">Các Phần Tử Trọng Tâm Để Mổ Xẻ</h2>
+            <div class="grid-container">
+                <!-- Card 1: HTML DOM Inspection -->
+                <article class="card" id="card-html">
+                    <span class="card-tag">HTML DOM</span>
+                    <h3 class="card-title">1. Chỉnh Sửa Tiêu Đề & Nội Dung</h3>
+                    <p class="card-text">
+                        Nhấp đúp chuột vào đoạn văn này trong tab <strong>Elements</strong> của DevTools để thử sửa nội dung chữ thành thông điệp của bạn.
+                    </p>
+                    <div class="demo-box" id="html-demo-box">
+                        <span class="highlight-text">Thẻ này sẵn sàng để thay đổi nội dung!</span>
+                    </div>
+                </article>
+
+                <!-- Card 2: Image & Src Attribute -->
+                <article class="card" id="card-image">
+                    <span class="card-tag">Media Attribute</span>
+                    <h3 class="card-title">2. Truy Tìm Thẻ &lt;img&gt; & Thuộc Tính src</h3>
+                    <p class="card-text">
+                        Tìm thẻ ảnh bên dưới trong tab Elements. Nhấp đúp vào giá trị của thuộc tính <code>src</code> và thay thế bằng URL ảnh khác.
+                    </p>
+                    <div class="image-wrapper">
+                        <img id="target-image" class="article-img" 
+                             src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80" 
+                             alt="Minh họa lập trình viên đang phân tích mã nguồn web">
+                    </div>
+                    <span class="caption">Ảnh mục tiêu thử nghiệm thay đổi src</span>
+                </article>
+
+                <!-- Card 3: CSS Styling & Box Model -->
+                <article class="card" id="card-css">
+                    <span class="card-tag">CSS Styles</span>
+                    <h3 class="card-title">3. Thử Nghiệm Thuộc Tính CSS</h3>
+                    <p class="card-text">
+                        Trong tab <strong>Styles</strong>, hãy thử đổi <code>background-color</code>, <code>color</code> hoặc thêm <code>border-radius: 24px</code> cho khối này.
+                    </p>
+                    <div class="css-demo-target" id="css-target-box">
+                        <p class="demo-label">Khối Thử Nghiệm Màu Sắc & Box Model</p>
+                        <p class="demo-sub">Margin: 16px | Padding: 20px | Color: #ffffff</p>
+                    </div>
+                </article>
+
+                <!-- Card 4: Links & Hover States -->
+                <article class="card" id="card-links">
+                    <span class="card-tag">Link Styles</span>
+                    <h3 class="card-title">4. Màu Sắc Của Liên Kết (Links)</h3>
+                    <p class="card-text">
+                        Kiểm tra quy tắc CSS định nghĩa màu sắc cho thẻ liên kết <code>&lt;a&gt;</code> và trạng thái hover bằng DevTools.
+                    </p>
+                    <ul class="sample-links">
+                        <li><a href="https://developer.mozilla.org/vi/" target="_blank" class="custom-link">Tài liệu MDN Web Docs</a></li>
+                        <li><a href="https://chrome.google.com/webstore" target="_blank" class="custom-link accent-link">Chrome DevTools Overview</a></li>
+                        <li><a href="https://github.com" target="_blank" class="custom-link special-link">Kho lưu trữ GitHub</a></li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- Responsive Simulation Section -->
+        <section id="responsive" class="responsive-section">
+            <h2 class="section-title">Mô Phỏng Chế Độ Thiết Bị Di Động (Device Mode)</h2>
+            <div class="device-info-banner">
+                <div class="info-content">
+                    <h3>Bấm tổ hợp Ctrl + Shift + M (Cmd + Shift + M)</h3>
+                    <p>
+                        Chuyển đổi giữa chế độ Desktop và các dòng máy như iPhone 12 Pro, Samsung Galaxy S20, iPad Air.
+                        Quan sát cách thanh điều hướng và lưới 4 thẻ tự động chuyển từ hiển thị hàng ngang thành cột xếp chồng (stacked layout).
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <p>© 2026 Bài Thực Hành: Mổ Xẻ Trang Web Bằng Developer Tools | Hướng dẫn & Báo cáo kỹ thuật</p>
+            <p>Trình duyệt khuyến nghị: Google Chrome / Microsoft Edge / Mozilla Firefox</p>
+        </div>
+    </footer>
+</body>
+</html>
