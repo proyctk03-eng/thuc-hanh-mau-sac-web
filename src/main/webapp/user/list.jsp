@@ -108,7 +108,9 @@
             <a href="users" class="btn-all">Show All Users</a>
             <a href="users?action=test-without-tran" style="background-color: #fd7e14; color: white;">Test Without Transaction</a>
             <a href="users?action=test-use-tran" style="background-color: #28a745; color: white;">Test Use Transaction</a>
+            <a href="users?action=test-transaction-rollback" style="background-color: #dc3545; color: white;">Test Rollback Transaction</a>
         </div>
+
         <form action="users" method="get" class="search-box">
             <input type="hidden" name="action" value="search" />
             <input type="text" name="country" placeholder="Search by country..." value="${countrySearch}" />

@@ -212,7 +212,11 @@ public class UserDAO implements IUserDAO {
         }
     }
 
-    // Trien khai Transaction them User va gan Permission
+    // =========================================================================
+    // [Bài tập] Luyện tập MySQL JDBC Transaction
+    // Sửa đổi phương thức addUserTransaction() để cố tình gây ra lỗi SQL
+    // Quan sát hiện tượng Rollback: cả User và Permission đều không được ghi vào DB
+    // =========================================================================
     @Override
     public void addUserTransaction(User user, int[] permissionIds) throws SQLException {
         Connection connection = null;
@@ -223,6 +227,7 @@ public class UserDAO implements IUserDAO {
             connection = getConnection();
             connection.setAutoCommit(false);
 
+            // 1. Chèn dữ liệu vào bảng users
             String insertUserSql = "INSERT INTO users (name, email, country) VALUES (?, ?, ?)";
             pstmtUser = connection.prepareStatement(insertUserSql, Statement.RETURN_GENERATED_KEYS);
             pstmtUser.setString(1, user.getName());
@@ -236,23 +241,31 @@ public class UserDAO implements IUserDAO {
                 userId = rs.getInt(1);
             }
 
+            // 2. CỐ TÌNH GÂY LỖI SQL:
+            // Sửa đổi câu lệnh INSERT INTO user_permission thành thừa tham số (?, ?, ?)
+            // Bảng user_permission chỉ có 2 cột (user_id, permission_id), nhưng câu lệnh truyền 3 dấu hỏi.
+            // Điều này gây ra lỗi SQLException: "Column count doesn't match value count at row 1"
             if (permissionIds != null && permissionIds.length > 0) {
-                String insertPermissionSql = "INSERT INTO user_permission (user_id, permission_id) VALUES (?, ?)";
+                String insertPermissionSql = "INSERT INTO user_permission (user_id, permission_id) VALUES (?, ?, ?)";
                 pstmtAssignment = connection.prepareStatement(insertPermissionSql);
                 for (int permissionId : permissionIds) {
                     pstmtAssignment.setInt(1, userId);
                     pstmtAssignment.setInt(2, permissionId);
+                    // Câu lệnh executeUpdate() dưới đây sẽ ném ra ngoại lệ SQLException
                     pstmtAssignment.executeUpdate();
                 }
             }
 
+            // 3. Nếu thành công thì Commit
             connection.commit();
             System.out.println("Transaction đã được commit thành công!");
         } catch (SQLException e) {
+            // 4. Khi gặp lỗi, lập tức Rollback toàn bộ dữ liệu
+            System.err.println(">>> Đã bắt được ngoại lệ SQL trong Transaction: " + e.getMessage());
             try {
                 if (connection != null) {
                     connection.rollback();
-                    System.out.println("Có lỗi xảy ra! Transaction đã bị rollback.");
+                    System.err.println(">>> [ROLLBACK THÀNH CÔNG] Toàn bộ thao tác ghi User (" + user.getName() + ") và Permission đã bị hủy bỏ! Cơ sở dữ liệu trở lại trạng thái ban đầu.");
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -268,6 +281,7 @@ public class UserDAO implements IUserDAO {
             }
         }
     }
+
 
     // Thuc thi tap lenh khong su dung Transaction (Quan sat loi commit mot nua)
     @Override

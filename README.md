@@ -168,3 +168,38 @@ Tệp lưu trữ `user-management.war` sẽ được sinh ra trong thư mục `t
 - **`UserDAO.java`**: Triển khai `Connection.prepareCall("{CALL procedure_name(...)}")` với đối tượng `CallableStatement`.
 - **`UserServlet.java`**: Gọi trực tiếp các phương thức Stored Procedure trong `listUser()`, `updateUser()`, và `deleteUser()`.
 
+## 8. [Bài tập] Luyện Tập MySQL JDBC Transaction (Kiểm Nghiệm Cơ Chế Rollback Khi Có Lỗi SQL)
+
+### 8.1. Sửa đổi mã nguồn cố tình gây lỗi SQL trong `addUserTransaction()`
+Trong phương thức `addUserTransaction(User user, int[] permissionIds)` của `UserDAO.java`:
+- **Bước 1:** Chèn người dùng vào bảng `users` thành công và lấy về `id` vừa sinh ra (`Statement.RETURN_GENERATED_KEYS`).
+- **Bước 2 (Cố tình tạo lỗi):** Chỉnh sửa câu lệnh SQL gán quyền sang dạng thừa tham số:
+  ```java
+  String insertPermissionSql = "INSERT INTO user_permission (user_id, permission_id) VALUES (?, ?, ?)";
+  ```
+  Do bảng `user_permission` chỉ có 2 cột nhưng câu lệnh định nghĩa 3 dấu hỏi chấm (`?`), MySQL ném ra ngoại lệ:
+  `java.sql.SQLException: Column count doesn't match value count at row 1`.
+- **Bước 3 (Kích hoạt Rollback):** Ngoại lệ rơi vào khối `catch (SQLException e)` và gọi:
+  ```java
+  connection.rollback();
+  ```
+  Toàn bộ các thao tác ghi dữ liệu trước đó (bao gồm bản ghi User vừa được insert) bị hủy bỏ ngay lập tức.
+
+### 8.2. Kết quả kiểm nghiệm thực tế
+1. **Thực thi:**
+   - Truy cập: `http://localhost:8080/user-management/users?action=test-transaction-rollback`
+   - Hoặc thêm mới một User có tích chọn phân quyền tại form Create.
+2. **Quan sát Console Log:**
+   ```text
+   >>> Đã bắt được ngoại lệ SQL trong Transaction: Column count doesn't match value count at row 1
+   >>> [ROLLBACK THÀNH CÔNG] Toàn bộ thao tác ghi User và Permission đã bị hủy bỏ! Cơ sở dữ liệu trở lại trạng thái ban đầu.
+   ```
+3. **Kiểm tra trong MySQL Database:**
+   ```sql
+   SELECT * FROM users ORDER BY id DESC LIMIT 5;
+   SELECT * FROM user_permission;
+   ```
+   **Kết quả:** Hoàn toàn không có bất kỳ bản ghi rác nào xuất hiện trong cả 2 bảng `users` và `user_permission`.
+   **Kết luận:** Đảm bảo trọn vẹn thuộc tính **Atomicity (Tính nguyên tử)** của chuẩn giao dịch ACID trong hệ thống cơ sở dữ liệu.
+
+

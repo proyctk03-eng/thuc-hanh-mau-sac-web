@@ -94,9 +94,13 @@ public class UserServlet extends HttpServlet {
                 case "test-use-tran":
                     testUseTran(request, response);
                     break;
+                case "test-transaction-rollback":
+                    testTransactionRollback(request, response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
+
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
@@ -218,4 +222,16 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("message", "Đã thực thi hàm testUseTran có sử dụng Transaction. Dữ liệu bảng Employee đã được ghi nhận thành công và toàn vẹn!");
         listUser(request, response);
     }
+
+    private void testTransactionRollback(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        // [Bài tập] Luyện tập MySQL JDBC Transaction
+        // Kích hoạt addUserTransaction() với lỗi SQL cố ý để kiểm nghiệm Rollback
+        User testUser = new User("Test Rollback User", "rollback@codegym.vn", "Vietnam");
+        int[] permissions = {1, 2, 4};
+        userDAO.addUserTransaction(testUser, permissions);
+        request.setAttribute("message", "Đã chạy hàm addUserTransaction() với lỗi SQL cố ý! Hãy quan sát Console (Rollback thành công) và kiểm tra bảng users trong MySQL: User 'Test Rollback User' hoàn toàn KHÔNG xuất hiện!");
+        listUser(request, response);
+    }
 }
+
