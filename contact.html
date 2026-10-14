@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liên hệ với chúng tôi</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+    .form-container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #0f172a;
+      margin-top: 0;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    label {
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    .radio-group {
+      margin-top: 6px;
+    }
+    .radio-option {
+      margin-bottom: 6px;
+    }
+    .radio-option input {
+      margin-right: 8px;
+    }
+    button[type="submit"] {
+      background-color: #2563eb;
+      color: #ffffff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    button[type="submit"]:hover {
+      background-color: #1d4ed8;
+    }
+    .back-home {
+      display: inline-block;
+      margin-top: 20px;
+      color: #2563eb;
+      text-decoration: none;
+    }
+    .back-home:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Liên hệ với chúng tôi</h1>
+    <p>Chúng tôi rất mong nhận được phản hồi từ bạn!</p>
+
+    <form action="#" method="post">
+      <div class="form-group">
+        <label for="ho_ten">Họ và tên:</label><br>
+        <input type="text" id="ho_ten" name="ho_ten" required placeholder="Nhập họ và tên của bạn">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email của bạn:</label><br>
+        <input type="email" id="email" name="email_nguoi_dung" required placeholder="example@domain.com">
+      </div>
+
+      <!-- Thử thách thêm: Nhóm radio button chọn chủ đề liên hệ -->
+      <div class="form-group">
+        <label>Chủ đề liên hệ:</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="topic_tech" name="chu_de" value="tech_support" checked>
+            <label for="topic_tech" style="font-weight: normal;">Hỗ trợ kỹ thuật</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="topic_feedback" name="chu_de" value="feedback">
+            <label for="topic_feedback" style="font-weight: normal;">Góp ý sản phẩm</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="topic_other" name="chu_de" value="other">
+            <label for="topic_other" style="font-weight: normal;">Khác</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="loi_nhan">Lời nhắn:</label><br>
+        <textarea id="loi_nhan" name="loi_nhan" rows="5" required placeholder="Nhập nội dung lời nhắn tại đây..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <button type="submit">Gửi lời nhắn</button>
+      </div>
+    </form>
+
+    <a href="index.html" class="back-home">&larr; Quay lại trang chủ Profile</a>
+  </div>
+</body>
+</html>

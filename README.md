@@ -1,107 +1,105 @@
-# Báo Cáo Thực Hành: "Nâng Cấp" Trang "About Me" Với Các Thẻ Semantic HTML
+# Báo Cáo Thực Hành: Xây Dựng Form Liên Hệ Đầu Tiên Của Bạn (contact.html)
 
 ## 1. Giới Thiệu & Mục Tiêu Đạt Được
-- [x] Phân tích cấu trúc phân cấp và các vùng logic của một trang web (Header, Main, Section, Footer).
-- [x] Áp dụng chuẩn Semantic HTML5 với các thẻ ngữ nghĩa: `<header>`, `<main>`, `<section>`, `<footer>`.
-- [x] Tái cấu trúc (refactoring) mã nguồn giúp tăng khả năng đọc hiểu, khả năng bảo trì và hỗ trợ SEO.
-- [x] Hiểu rõ bản chất: Semantic HTML tối ưu hóa cấu trúc và ý nghĩa logic của tài liệu "dưới mui xe", không phá vỡ hay làm biến dạng giao diện hiển thị thị giác.
+- [x] Áp dụng thuần thục các thẻ biểu mẫu HTML: `<form>`, `<label>`, `<input>`, `<textarea>`, `<button>`.
+- [x] Sử dụng đa dạng các loại trường nhập liệu: `type="text"`, `type="email"`, `type="radio"`.
+- [x] Thiết lập liên kết hai chiều chính xác giữa nhãn `<label for="...">` và phần tử nhập liệu `<input id="...">` / `<textarea id="...">`.
+- [x] Xây dựng tệp `contact.html` hoàn chỉnh, kết nối liền mạch hai chiều với trang chủ `index.html`.
+- [x] Hoàn thành Thử thách thêm (Optional Challenge): Nhóm các nút chọn `radio button` chọn chủ đề liên hệ với cùng thuộc tính `name="chu_de"`.
 
 ---
 
-## 2. Ghi Chú Kiến Thức Cốt Lõi (Nội Dung Nộp Bài Thực Hành)
+## 2. Tóm Tắt Các Bước Đã Thực Hiện (Nội Dung Nộp Bài Thực Hành)
 
-### 2.1. Phân tích cấu trúc phân cấp tài liệu (Document Outline)
+### Bước 1: Khởi tạo tệp và bộ khung tài liệu
+- Tạo tệp `contact.html` trong thư mục dự án `my-first-website`.
+- Sử dụng Emmet (`!`) để sinh khung HTML5 chuẩn, cấu hình `lang="vi"` và đặt tiêu đề `<title>Liên hệ với chúng tôi</title>`.
 
-```text
-<body>
-├── <header>                      # Khu vực đầu trang
-│   ├── <h1>Nguyễn Thị Bê</h1>    # Tiêu đề chính duy nhất
-│   └── <img class="avatar">      # Ảnh đại diện cá nhân
-├── <main>                        # Vùng nội dung trọng tâm của trang
-│   ├── <section>                 # Phần 1: Giới thiệu bản thân (h2 + p)
-│   ├── <section>                 # Phần 2: Sở thích cá nhân (h2 + ul)
-│   └── <section>                 # Phần 3: Kết nối mạng xã hội (h2 + ul)
-└── <footer>                      # Chân trang chứa bản quyền (&copy;)
-```
+### Bước 2: Xây dựng cấu trúc Form cơ bản
+- Thêm tiêu đề trang `<h1>` và đoạn mô tả hướng dẫn người dùng.
+- Bao bọc toàn bộ các trường nhập bằng thẻ `<form action="#" method="post">`.
+- Gom nhóm từng cặp `label-input` vào trong từng khối `<div class="form-group">` để quản trị bố cục và khoảng cách khoa học.
 
-### 2.2. Ý nghĩa và Lợi ích của các thẻ Semantic HTML
+### Bước 3: Tạo các trường nhập liệu cốt lõi
+1. **Trường Họ và Tên:**
+   - Dùng `<label for="ho_ten">` và `<input type="text" id="ho_ten" name="ho_ten">`.
+2. **Trường Email:**
+   - Dùng `<label for="email">` và `<input type="email" id="email" name="email_nguoi_dung">`. Trình duyệt tự động kiểm tra định dạng email hợp lệ (có ký tự `@` và tên miền).
+3. **Nhóm Radio Button chọn chủ đề (Thử thách mở rộng):**
+   - Đặt cùng `name="chu_de"` cho 3 lựa chọn (*Hỗ trợ kỹ thuật*, *Góp ý sản phẩm*, *Khác*) để người dùng chỉ chọn được duy nhất một tùy chọn tại một thời điểm.
+4. **Trường Lời nhắn nhiều dòng:**
+   - Dùng `<textarea id="loi_nhan" name="loi_nhan" rows="5">` cho phép nhập văn bản dài.
+5. **Nút gửi biểu mẫu:**
+   - Dùng `<button type="submit">Gửi lời nhắn</button>` để kích hoạt sự kiện submit dữ liệu.
 
-| Thẻ Semantic | Ý Nghĩa Ngữ Nghĩa | Lợi Ích Cụ Thể |
+### Bước 4: Kiểm thử trải nghiệm người dùng
+- Kiểm tra tính năng nhấp chuột vào nhãn `<label>`: Con trỏ tự động focus vào ô nhập liệu tương ứng.
+- Kiểm tra tính năng validation: Khi nhập email sai định dạng (ví dụ `abc`), trình duyệt hiện thông báo cảnh báo lỗi chuẩn HTML5.
+
+---
+
+## 3. Bảng Phân Tích Các Thuộc Tính Cốt Lõi Của Thẻ Form
+
+| Thẻ / Thuộc tính | Vai Trò & Tác Dụng | Ví Dụ Trong Bài |
 | :--- | :--- | :--- |
-| `<header>` | Đại diện cho phần mở đầu, tiêu đề trang hoặc nhóm điều hướng giới thiệu. | Giúp các công nghệ trợ thính (Screen Reader) nhận diện ngay đây là phần đầu tài liệu. |
-| `<main>` | Chứa nội dung chính, độc nhất của trang (mỗi tài liệu chỉ có duy nhất một `<main>`). | Cho phép người dùng khiếm thị dùng phím tắt nhảy thẳng đến nội dung chính (Skip to content). |
-| `<section>` | Phân chia tài liệu thành các khối chủ đề độc lập có liên kết logic. | Giúp thuật toán tìm kiếm (Google, Bing) lập chỉ mục (indexing) từng đoạn nội dung chính xác hơn. |
-| `<footer>` | Đại diện cho phần kết thúc của trang hoặc phần tử chứa thông tin tác giả, bản quyền, liên hệ. | Chuẩn hóa thông tin bản quyền và liên hệ cuối trang. |
+| `<form action="..." method="...">` | Khung bao bọc, xác định đích đến (`action`) và phương thức truyền tải (`method="post"`) của dữ liệu. | `<form action="#" method="post">` |
+| `<label for="...">` | Nhãn mô tả cho ô nhập liệu. Thuộc tính `for` phải trùng khớp với `id` của input để mở rộng vùng nhấp chuột (hỗ trợ tiếp cận a11y). | `<label for="ho_ten">` |
+| `type="email"` | Kích hoạt bộ kiểm tra hợp lệ định dạng email tích hợp sẵn trên trình duyệt và bàn phím chuyên dụng `@` trên di động. | `<input type="email" id="email">` |
+| `type="radio"` | Cho phép người dùng chọn 1 trong nhiều phương án. Cần chung thuộc tính `name` để nhóm chúng lại với nhau. | `<input type="radio" name="chu_de">` |
+| `<textarea>` | Cho phép người dùng nhập văn bản nhiều dòng linh hoạt (khác với `<input>` chỉ nhận 1 dòng). | `<textarea id="loi_nhan" rows="5">` |
+| `<button type="submit">` | Nút kích hoạt gửi dữ liệu form tới địa chỉ `action`. | `<button type="submit">` |
 
 ---
 
-## 3. Cấu Trúc Mã Nguồn Hoàn Chỉnh (`index.html`)
+## 4. Mã Nguồn Hoàn Chỉnh (`contact.html`)
 
 ```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang About Me - Cấu Trúc Semantic HTML</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liên hệ với chúng tôi</title>
 </head>
 <body>
-    <div class="container">
-        <!-- Khu vực đầu trang: Tên và Ảnh đại diện -->
-        <header>
-            <h1>Nguyễn Thị Bê</h1>
-            <img class="avatar" src="images/avatar.jpg" alt="Ảnh chân dung của Nguyễn Thị Bê" width="200">
-        </header>
+  <div class="form-container">
+    <h1>Liên hệ với chúng tôi</h1>
+    <p>Chúng tôi rất mong nhận được phản hồi từ bạn!</p>
 
-        <!-- Nội dung chính của trang web -->
-        <main>
-            <!-- Phần 1: Giới thiệu bản thân -->
-            <section>
-                <h2>Giới thiệu bản thân</h2>
-                <p>
-                    Xin chào! Tôi là một <strong>lập trình viên</strong> đang trên hành trình học hỏi về thế giới phát triển web. Tôi có niềm đam mê với công nghệ và thích tạo ra những sản phẩm <em>đẹp mắt</em> và hữu ích.
-                </p>
-            </section>
+    <form action="#" method="post">
+      <div>
+        <label for="ho_ten">Họ và tên:</label><br>
+        <input type="text" id="ho_ten" name="ho_ten" required>
+      </div>
+      <br>
+      <div>
+        <label for="email">Email của bạn:</label><br>
+        <input type="email" id="email" name="email_nguoi_dung" required>
+      </div>
+      <br>
+      <!-- Nhóm radio button chọn chủ đề liên hệ -->
+      <div>
+        <label>Chủ đề liên hệ:</label><br>
+        <input type="radio" id="topic_tech" name="chu_de" value="tech_support" checked>
+        <label for="topic_tech">Hỗ trợ kỹ thuật</label><br>
+        <input type="radio" id="topic_feedback" name="chu_de" value="feedback">
+        <label for="topic_feedback">Góp ý sản phẩm</label><br>
+        <input type="radio" id="topic_other" name="chu_de" value="other">
+        <label for="topic_other">Khác</label>
+      </div>
+      <br>
+      <div>
+        <label for="loi_nhan">Lời nhắn:</label><br>
+        <textarea id="loi_nhan" name="loi_nhan" rows="5" required></textarea>
+      </div>
+      <br>
+      <div>
+        <button type="submit">Gửi lời nhắn</button>
+      </div>
+    </form>
 
-            <!-- Phần 2: Sở thích cá nhân -->
-            <section>
-                <h2>Sở thích</h2>
-                <ul>
-                    <li>Đọc sách khoa học viễn tưởng</li>
-                    <li>Chơi cờ vua</li>
-                    <li>Đi bộ đường dài</li>
-                </ul>
-            </section>
-
-            <!-- Phần 3: Kết nối mạng xã hội -->
-            <section>
-                <h2>Kết nối với tôi</h2>
-                <ul>
-                    <li>
-                        <a href="https://www.facebook.com/your-username" target="_blank" rel="noopener noreferrer">Facebook</a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/proyctk03-eng" target="_blank" rel="noopener noreferrer">Github</a>
-                    </li>
-                </ul>
-            </section>
-        </main>
-
-        <!-- Chân trang: Thông tin bản quyền -->
-        <footer>
-            <p>&copy; 2025 Nguyễn Thị Bê. Bảo lưu mọi quyền.</p>
-        </footer>
-    </div>
+    <p><a href="index.html">&larr; Quay lại trang chủ Profile</a></p>
+  </div>
 </body>
 </html>
 ```
-
----
-
-## 4. Ghi Chú Kinh Nghiệm Sau Khi Tái Cấu Trúc
-1. **So sánh trước và sau khi refactor:** Giao diện trực quan trên Live Server hoàn toàn không bị xáo trộn, nhưng cấu trúc cây DOM trong tab `Elements` của DevTools trở nên rõ ràng, sạch sẽ và chuyên nghiệp hơn rất nhiều.
-2. **Ký tự thực thể HTML (`&copy;`):** Dùng `&copy;` để hiển thị ký tự bản quyền `©` một cách chuẩn hóa trên mọi bảng mã trình duyệt mà không sợ lỗi font.
-3. **Tính mở rộng:** Khi cần thêm thanh điều hướng `<nav>` hoặc thanh bên `<aside>`, ta có thể tích hợp mượt mà vào cấu trúc Semantic đã được thiết lập sẵn.
