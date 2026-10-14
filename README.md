@@ -1,40 +1,34 @@
-# Báo Cáo Thực Hành: Viết Profile Cá Nhân Bằng Các Thẻ HTML Đã Học
+# Báo Cáo Thực Hành: Hoàn Thiện Trang Cá Nhân Với Liên Kết Mạng Xã Hội
 
 ## 1. Giới Thiệu & Mục Tiêu Đạt Được
-- [x] Áp dụng thuần thục các thẻ HTML cốt lõi: `<h1>`, `<h2>`, `<p>`, `<img>`, `<strong>`, `<em>`, `<ul>`, `<li>`.
-- [x] Tổ chức cấu trúc thư mục dự án chuẩn với thư mục tài nguyên hình ảnh `images/` và tệp ảnh đại diện `avatar.jpg`.
-- [x] Hiển thị nội dung đa phương tiện kết hợp văn bản có cấu trúc ngữ nghĩa (semantic HTML).
-- [x] Kiểm tra hiển thị trực quan thông qua tiện ích Live Server trong Visual Studio Code.
+- [x] Áp dụng thẻ neo liên kết `<a>` (Anchor tag) để tạo các siêu liên kết (hyperlinks) ra các nền tảng mạng xã hội bên ngoài.
+- [x] Sử dụng thuộc tính `target="_blank"` giúp liên kết tự động mở trong một thẻ (tab) trình duyệt mới mà không làm mất trang web hiện tại.
+- [x] Tích hợp chuẩn an toàn bảo mật `rel="noopener noreferrer"` nhằm ngăn chặn tấn công Tabnabbing và rò rỉ thông tin Header Referer.
+- [x] Phân biệt rõ ràng và vận dụng chính xác giữa **Đường dẫn tuyệt đối (Absolute URL)** và **Đường dẫn tương đối (Relative URL)**.
+- [x] Hoàn thiện trọn vẹn dự án trang web đầu tiên của Module 1.
 
 ---
 
 ## 2. Ghi Chú Kiến Thức Cốt Lõi (Nội Dung Nộp Bài Thực Hành)
 
-### 2.1. Cấu trúc thư mục dự án chuẩn
-```text
-my-first-website/
-├── images/
-│   └── avatar.jpg          # Tệp ảnh đại diện (đường dẫn tương đối: images/avatar.jpg)
-├── index.html              # Trang chủ hiển thị thông tin cá nhân
-└── README.md               # Tài liệu ghi chú và hướng dẫn thực hành
-```
+### 2.1. Phân biệt Đường dẫn Tuyệt đối và Tương đối
 
-### 2.2. Bảng phân tích ngữ nghĩa các thẻ HTML đã sử dụng
-
-| Thẻ HTML | Tên gọi & Ngữ nghĩa | Vai trò trong bài thực hành |
+| Tiêu Chí | Đường Dẫn Tuyệt Đối (Absolute URL) | Đường Dẫn Tương Đối (Relative URL) |
 | :--- | :--- | :--- |
-| `<h1>` | Heading 1 (Đề mục cấp cao nhất) | Hiển thị tên đầy đủ của chủ nhân trang web (`Nguyễn Thị Bê`). Mỗi trang web chỉ nên có duy nhất một thẻ `<h1>`. |
-| `<h2>` | Heading 2 (Đề mục phụ cấp 2) | Phân chia các khối nội dung lớn: *"Giới thiệu bản thân"* và *"Sở thích"*. |
-| `<img>` | Image (Thẻ tự đóng) | Nhúng ảnh chân dung đại diện với thuộc tính `src="images/avatar.jpg"`, `alt` mô tả hỗ trợ tiếp cận (a11y) và `width="200"`. |
-| `<p>` | Paragraph (Đoạn văn) | Chứa văn bản giới thiệu chi tiết về nghề nghiệp và đam mê công nghệ. |
-| `<strong>` | Strong Importance (Nhấn mạnh tầm quan trọng) | In đậm cụm từ **lập trình viên** nhằm làm nổi bật chuyên môn chính. |
-| `<em>` | Emphasis (Nhấn mạnh ngữ điệu) | In nghiêng từ *đẹp mắt* để biểu thị cảm xúc và sắc thái biểu cảm. |
-| `<ul>` | Unordered List (Danh sách không có thứ tự) | Bao bọc danh sách các sở thích cá nhân dưới dạng bullet points. |
-| `<li>` | List Item (Mục trong danh sách) | Biểu diễn từng sở thích cụ thể như đọc sách, chơi cờ vua, đi bộ đường dài. |
+| **Định nghĩa** | Chỉ định vị trí đầy đủ, chính xác của tài nguyên trên Internet bao gồm cả giao thức (`https://`), tên miền và đường dẫn. | Chỉ định vị trí của tệp tin dựa trên vị trí của tệp tin HTML hiện tại trong cùng thư mục dự án. |
+| **Ví dụ trong bài** | `https://github.com/proyctk03-eng`<br>`https://www.facebook.com/your-username` | `images/avatar.jpg`<br>`style.css` |
+| **Trường hợp dùng** | Liên kết ra các trang web hoặc tài nguyên bên ngoài hệ thống. | Nhúng hình ảnh, video, liên kết chuyển trang nội bộ trong cùng website. |
+
+### 2.2. Phân tích các thuộc tính của thẻ `<a>`
+- `href` (Hypertext Reference): Chỉ định địa chỉ đích mà liên kết sẽ dẫn đến khi người dùng nhấp chuột.
+- `target="_blank"`: Báo cho trình duyệt mở tài liệu được liên kết trong một tab hoặc cửa sổ mới thay vì ghi đè lên trang hiện tại.
+- `rel="noopener noreferrer"`: Tiêu chuẩn an toàn bắt buộc khi sử dụng `target="_blank"`:
+  - `noopener`: Ngăn trang mới truy cập vào đối tượng `window.opener` của trang gốc, phòng chống lỗ hổng bảo mật tấn công chiếm quyền điều khiển trang tab cũ (Reverse Tabnabbing).
+  - `noreferrer`: Không gửi thông tin nguồn gốc truy cập (HTTP referer header) sang máy chủ đích nhằm bảo vệ quyền riêng tư.
 
 ---
 
-## 3. Mã Nguồn Hoàn Chỉnh (`index.html`)
+## 3. Cấu Trúc Mã Nguồn Hoàn Chỉnh (`index.html`)
 
 ```html
 <!DOCTYPE html>
@@ -57,13 +51,25 @@ my-first-website/
         <li>Chơi cờ vua</li>
         <li>Đi bộ đường dài</li>
     </ul>
+
+    <h2>Kết nối với tôi</h2>
+    <ul>
+        <li>
+            <a href="https://www.facebook.com/your-username" target="_blank" rel="noopener noreferrer">Facebook</a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </li>
+        <li>
+            <a href="https://github.com/proyctk03-eng" target="_blank" rel="noopener noreferrer">Github</a>
+        </li>
+    </ul>
 </body>
 </html>
 ```
 
 ---
 
-## 4. Ghi Chú Kinh Nghiệm Khi Làm Bài
-1. **Đường dẫn tương đối (Relative Path):** Khi tệp `index.html` và thư mục `images/` nằm cùng cấp, đường dẫn tới ảnh phải là `images/avatar.jpg`. Nếu viết `/images/avatar.jpg` hoặc nhầm tên tệp, ảnh sẽ không hiển thị.
-2. **Thuộc tính `alt`:** Luôn khai báo thuộc tính `alt` đầy đủ để người khiếm thị sử dụng Screen Reader có thể hiểu được nội dung ảnh, đồng thời hỗ trợ SEO và hiển thị văn bản thay thế khi đường dẫn ảnh bị lỗi.
-3. **Phân biệt `<strong>` vs `<b>`, `<em>` vs `<i>`:** Thẻ `<strong>` và `<em>` mang ý nghĩa ngữ nghĩa (semantic meaning), giúp công cụ tìm kiếm và thiết bị trợ thính hiểu được mức độ quan trọng của từ ngữ, thay vì chỉ đơn thuần là định dạng hiển thị thị giác.
+## 4. Ghi Chú Kinh Nghiệm & Kiểm Thử
+1. **Kiểm tra hoạt động với Live Server:** Khi nhấp vào các liên kết mạng xã hội (Facebook, LinkedIn, Github), trình duyệt mở sang tab mới mượt mà, đồng thời tab trang web ban đầu vẫn giữ nguyên trạng thái.
+2. **Cấu trúc danh sách ngữ nghĩa:** Việc đặt các thẻ `<a>` bên trong thẻ `<li>` và danh sách `<ul>` giúp các thiết bị đọc màn hình (Screen Readers) thông báo chính xác số lượng liên kết mạng xã hội hiện có, nâng cao trải nghiệm người dùng (UX) và khả năng tiếp cận (Accessibility - a11y).
