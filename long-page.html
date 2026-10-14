@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang web dài - Nút Cuộn Lên Đầu Trang</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="page-top">
+    <div class="container">
+        <h1>Một Bài Viết Rất Dài: Khám Phá Kiến Trúc Web Hiện Đại</h1>
+        
+        <p class="lead">
+            Chào mừng bạn đến với bài viết chuyên sâu về kỹ thuật bố cục trong CSS. Trang web này được xây dựng với độ dài đủ lớn để bạn có thể cuộn trang và kiểm nghiệm nút "Cuộn lên đầu trang" (Back to top) được ghim cố định ở góc phải màn hình bằng thuộc tính <code>position: fixed</code>.
+        </p>
+
+        <h2>1. Giới thiệu về Thuộc tính Position trong CSS</h2>
+        <p>
+            Trong thiết kế web hiện đại, thuộc tính <code>position</code> đóng vai trò then chốt trong việc kiểm soát cách thức các phần tử được đặt trên trang. Theo mặc định, các phần tử HTML tuân theo luồng tài liệu thông thường (Normal Flow) với giá trị <code>position: static</code>.
+        </p>
+        <p>
+            Khi muốn tách một phần tử ra khỏi luồng thông thường và ghim nó cố định vào khung nhìn (Viewport) của trình duyệt, chúng ta sử dụng <code>position: fixed</code>. Phần tử này sẽ luôn nằm ở một tọa độ cố định ngay cả khi người dùng cuộn chuột qua hàng nghìn dòng văn bản.
+        </p>
+
+        <h2>2. Phân biệt Fixed Positioning và Absolute Positioning</h2>
+        <p>
+            Rất nhiều người mới học thường nhầm lẫn giữa <code>position: absolute</code> và <code>position: fixed</code>. Điểm khác biệt mấu chốt nằm ở khung tham chiếu định vị:
+        </p>
+        <p>
+            - <strong>Absolute:</strong> Định vị tương đối theo phần tử cha gần nhất có <code>position</code> khác <code>static</code>. Khi trang cuộn, phần tử absolute sẽ cuộn theo nội dung.
+        </p>
+        <p>
+            - <strong>Fixed:</strong> Định vị trực tiếp theo khung nhìn của trình duyệt (Viewport). Bất kể người dùng cuộn lên hay xuống, phần tử fixed luôn đứng yên ở vị trí được xác định bởi <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>.
+        </p>
+
+        <h2>3. Tầm Quan Trọng Của Trải Nghiệm Người Dùng (UX)</h2>
+        <p>
+            Khi đọc một bài báo dài hoặc danh mục sản phẩm thương mại điện tử với hàng trăm sản phẩm, việc phải dùng ngón tay kéo thanh cuộn hoặc lăn chuột liên tục để quay lại đầu trang là một trải nghiệm rất mệt mỏi.
+        </p>
+        <p>
+            Nút "Back to top" giải quyết triệt để vấn đề này chỉ bằng một cú nhấp chuột nhẹ nhàng. Kết hợp với thuộc tính <code>scroll-behavior: smooth</code>, trang web sẽ lướt êm ái lên trên mà không gây cảm giác giật cục, chóng mặt cho người xem.
+        </p>
+
+        <h2>4. Phân Tích Kỹ Thuật Nút Bấm</h2>
+        <p>
+            Nút bấm của chúng ta sử dụng thẻ neo siêu liên kết <code>&lt;a href="#page-top"&gt;</code>. Khi người dùng click, trình duyệt sẽ tìm kiếm phần tử có <code>id="page-top"</code> được gắn trực tiếp trên thẻ <code>&lt;body&gt;</code> để di chuyển tới.
+        </p>
+        <p>
+            Về mặt tạo hình, nút có kích thước <code>50px x 50px</code>, góc bo tròn tuyệt đối <code>border-radius: 50%</code> tạo thành hình tròn hoàn hảo, và áp dụng <code>display: grid; place-items: center;</code> để căn giữa mũi tên <code>↑</code> một cách tinh tế.
+        </p>
+
+        <h2>5. Kết Luận & Thử Nghiệm</h2>
+        <p>
+            Hãy cuộn chuột xuống đến tận cuối trang và nhấp thử vào nút tròn màu xanh ở góc phải phía dưới màn hình. Bạn sẽ thấy trang web lướt ngược lên trên một cách vô cùng mượt mà!
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+        <p>
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
+        </p>
+        <p>
+            Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi.
+        </p>
+    </div>
+
+    <!-- Nút bấm Ghim Cuộn lên đầu trang -->
+    <a href="#page-top" class="back-to-top-btn" title="Cuộn lên đầu trang">↑</a>
+</body>
+</html>
