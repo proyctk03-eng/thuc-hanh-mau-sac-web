@@ -1,30 +1,37 @@
-# Báo Cáo Thực Hành: Hoàn Thiện Trang Cá Nhân Với Liên Kết Mạng Xã Hội
+# Báo Cáo Thực Hành: "Nâng Cấp" Trang "About Me" Với Các Thẻ Semantic HTML
 
 ## 1. Giới Thiệu & Mục Tiêu Đạt Được
-- [x] Áp dụng thẻ neo liên kết `<a>` (Anchor tag) để tạo các siêu liên kết (hyperlinks) ra các nền tảng mạng xã hội bên ngoài.
-- [x] Sử dụng thuộc tính `target="_blank"` giúp liên kết tự động mở trong một thẻ (tab) trình duyệt mới mà không làm mất trang web hiện tại.
-- [x] Tích hợp chuẩn an toàn bảo mật `rel="noopener noreferrer"` nhằm ngăn chặn tấn công Tabnabbing và rò rỉ thông tin Header Referer.
-- [x] Phân biệt rõ ràng và vận dụng chính xác giữa **Đường dẫn tuyệt đối (Absolute URL)** và **Đường dẫn tương đối (Relative URL)**.
-- [x] Hoàn thiện trọn vẹn dự án trang web đầu tiên của Module 1.
+- [x] Phân tích cấu trúc phân cấp và các vùng logic của một trang web (Header, Main, Section, Footer).
+- [x] Áp dụng chuẩn Semantic HTML5 với các thẻ ngữ nghĩa: `<header>`, `<main>`, `<section>`, `<footer>`.
+- [x] Tái cấu trúc (refactoring) mã nguồn giúp tăng khả năng đọc hiểu, khả năng bảo trì và hỗ trợ SEO.
+- [x] Hiểu rõ bản chất: Semantic HTML tối ưu hóa cấu trúc và ý nghĩa logic của tài liệu "dưới mui xe", không phá vỡ hay làm biến dạng giao diện hiển thị thị giác.
 
 ---
 
 ## 2. Ghi Chú Kiến Thức Cốt Lõi (Nội Dung Nộp Bài Thực Hành)
 
-### 2.1. Phân biệt Đường dẫn Tuyệt đối và Tương đối
+### 2.1. Phân tích cấu trúc phân cấp tài liệu (Document Outline)
 
-| Tiêu Chí | Đường Dẫn Tuyệt Đối (Absolute URL) | Đường Dẫn Tương Đối (Relative URL) |
+```text
+<body>
+├── <header>                      # Khu vực đầu trang
+│   ├── <h1>Nguyễn Thị Bê</h1>    # Tiêu đề chính duy nhất
+│   └── <img class="avatar">      # Ảnh đại diện cá nhân
+├── <main>                        # Vùng nội dung trọng tâm của trang
+│   ├── <section>                 # Phần 1: Giới thiệu bản thân (h2 + p)
+│   ├── <section>                 # Phần 2: Sở thích cá nhân (h2 + ul)
+│   └── <section>                 # Phần 3: Kết nối mạng xã hội (h2 + ul)
+└── <footer>                      # Chân trang chứa bản quyền (&copy;)
+```
+
+### 2.2. Ý nghĩa và Lợi ích của các thẻ Semantic HTML
+
+| Thẻ Semantic | Ý Nghĩa Ngữ Nghĩa | Lợi Ích Cụ Thể |
 | :--- | :--- | :--- |
-| **Định nghĩa** | Chỉ định vị trí đầy đủ, chính xác của tài nguyên trên Internet bao gồm cả giao thức (`https://`), tên miền và đường dẫn. | Chỉ định vị trí của tệp tin dựa trên vị trí của tệp tin HTML hiện tại trong cùng thư mục dự án. |
-| **Ví dụ trong bài** | `https://github.com/proyctk03-eng`<br>`https://www.facebook.com/your-username` | `images/avatar.jpg`<br>`style.css` |
-| **Trường hợp dùng** | Liên kết ra các trang web hoặc tài nguyên bên ngoài hệ thống. | Nhúng hình ảnh, video, liên kết chuyển trang nội bộ trong cùng website. |
-
-### 2.2. Phân tích các thuộc tính của thẻ `<a>`
-- `href` (Hypertext Reference): Chỉ định địa chỉ đích mà liên kết sẽ dẫn đến khi người dùng nhấp chuột.
-- `target="_blank"`: Báo cho trình duyệt mở tài liệu được liên kết trong một tab hoặc cửa sổ mới thay vì ghi đè lên trang hiện tại.
-- `rel="noopener noreferrer"`: Tiêu chuẩn an toàn bắt buộc khi sử dụng `target="_blank"`:
-  - `noopener`: Ngăn trang mới truy cập vào đối tượng `window.opener` của trang gốc, phòng chống lỗ hổng bảo mật tấn công chiếm quyền điều khiển trang tab cũ (Reverse Tabnabbing).
-  - `noreferrer`: Không gửi thông tin nguồn gốc truy cập (HTTP referer header) sang máy chủ đích nhằm bảo vệ quyền riêng tư.
+| `<header>` | Đại diện cho phần mở đầu, tiêu đề trang hoặc nhóm điều hướng giới thiệu. | Giúp các công nghệ trợ thính (Screen Reader) nhận diện ngay đây là phần đầu tài liệu. |
+| `<main>` | Chứa nội dung chính, độc nhất của trang (mỗi tài liệu chỉ có duy nhất một `<main>`). | Cho phép người dùng khiếm thị dùng phím tắt nhảy thẳng đến nội dung chính (Skip to content). |
+| `<section>` | Phân chia tài liệu thành các khối chủ đề độc lập có liên kết logic. | Giúp thuật toán tìm kiếm (Google, Bing) lập chỉ mục (indexing) từng đoạn nội dung chính xác hơn. |
+| `<footer>` | Đại diện cho phần kết thúc của trang hoặc phần tử chứa thông tin tác giả, bản quyền, liên hệ. | Chuẩn hóa thông tin bản quyền và liên hệ cuối trang. |
 
 ---
 
@@ -36,40 +43,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Web Đầu Tiên Của Tôi - Profile Cá Nhân</title>
+    <title>Trang About Me - Cấu Trúc Semantic HTML</title>
 </head>
 <body>
-    <h1>Nguyễn Thị Bê</h1>
-    <img src="images/avatar.jpg" alt="Ảnh chân dung của Nguyễn Thị Bê" width="200">
-    
-    <h2>Giới thiệu bản thân</h2>
-    <p>Xin chào! Tôi là một <strong>lập trình viên</strong> đang trên hành trình học hỏi về thế giới phát triển web. Tôi có niềm đam mê với công nghệ và thích tạo ra những sản phẩm <em>đẹp mắt</em> và hữu ích.</p>
-    
-    <h2>Sở thích</h2>
-    <ul>
-        <li>Đọc sách khoa học viễn tưởng</li>
-        <li>Chơi cờ vua</li>
-        <li>Đi bộ đường dài</li>
-    </ul>
+    <div class="container">
+        <!-- Khu vực đầu trang: Tên và Ảnh đại diện -->
+        <header>
+            <h1>Nguyễn Thị Bê</h1>
+            <img class="avatar" src="images/avatar.jpg" alt="Ảnh chân dung của Nguyễn Thị Bê" width="200">
+        </header>
 
-    <h2>Kết nối với tôi</h2>
-    <ul>
-        <li>
-            <a href="https://www.facebook.com/your-username" target="_blank" rel="noopener noreferrer">Facebook</a>
-        </li>
-        <li>
-            <a href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </li>
-        <li>
-            <a href="https://github.com/proyctk03-eng" target="_blank" rel="noopener noreferrer">Github</a>
-        </li>
-    </ul>
+        <!-- Nội dung chính của trang web -->
+        <main>
+            <!-- Phần 1: Giới thiệu bản thân -->
+            <section>
+                <h2>Giới thiệu bản thân</h2>
+                <p>
+                    Xin chào! Tôi là một <strong>lập trình viên</strong> đang trên hành trình học hỏi về thế giới phát triển web. Tôi có niềm đam mê với công nghệ và thích tạo ra những sản phẩm <em>đẹp mắt</em> và hữu ích.
+                </p>
+            </section>
+
+            <!-- Phần 2: Sở thích cá nhân -->
+            <section>
+                <h2>Sở thích</h2>
+                <ul>
+                    <li>Đọc sách khoa học viễn tưởng</li>
+                    <li>Chơi cờ vua</li>
+                    <li>Đi bộ đường dài</li>
+                </ul>
+            </section>
+
+            <!-- Phần 3: Kết nối mạng xã hội -->
+            <section>
+                <h2>Kết nối với tôi</h2>
+                <ul>
+                    <li>
+                        <a href="https://www.facebook.com/your-username" target="_blank" rel="noopener noreferrer">Facebook</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/proyctk03-eng" target="_blank" rel="noopener noreferrer">Github</a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <!-- Chân trang: Thông tin bản quyền -->
+        <footer>
+            <p>&copy; 2025 Nguyễn Thị Bê. Bảo lưu mọi quyền.</p>
+        </footer>
+    </div>
 </body>
 </html>
 ```
 
 ---
 
-## 4. Ghi Chú Kinh Nghiệm & Kiểm Thử
-1. **Kiểm tra hoạt động với Live Server:** Khi nhấp vào các liên kết mạng xã hội (Facebook, LinkedIn, Github), trình duyệt mở sang tab mới mượt mà, đồng thời tab trang web ban đầu vẫn giữ nguyên trạng thái.
-2. **Cấu trúc danh sách ngữ nghĩa:** Việc đặt các thẻ `<a>` bên trong thẻ `<li>` và danh sách `<ul>` giúp các thiết bị đọc màn hình (Screen Readers) thông báo chính xác số lượng liên kết mạng xã hội hiện có, nâng cao trải nghiệm người dùng (UX) và khả năng tiếp cận (Accessibility - a11y).
+## 4. Ghi Chú Kinh Nghiệm Sau Khi Tái Cấu Trúc
+1. **So sánh trước và sau khi refactor:** Giao diện trực quan trên Live Server hoàn toàn không bị xáo trộn, nhưng cấu trúc cây DOM trong tab `Elements` của DevTools trở nên rõ ràng, sạch sẽ và chuyên nghiệp hơn rất nhiều.
+2. **Ký tự thực thể HTML (`&copy;`):** Dùng `&copy;` để hiển thị ký tự bản quyền `©` một cách chuẩn hóa trên mọi bảng mã trình duyệt mà không sợ lỗi font.
+3. **Tính mở rộng:** Khi cần thêm thanh điều hướng `<nav>` hoặc thanh bên `<aside>`, ta có thể tích hợp mượt mà vào cấu trúc Semantic đã được thiết lập sẵn.
