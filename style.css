@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Hiệu ứng Hover cho Nút Bấm với CSS :hover và transition
+   ========================================================================== */
+
+/* Reset và thiết lập body */
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  display: grid;
+  place-items: center; /* Căn giữa mọi thứ trong body */
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+p {
+  color: #7f8c8d;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+/* Định dạng trạng thái mặc định của nút */
+.btn {
+  display: inline-block; /* Để nút tuân thủ padding và margin */
+  background-color: #3498db; /* Màu nền xanh dương */
+  color: #ffffff; /* Màu chữ trắng */
+  padding: 15px 30px; /* Vùng đệm bên trong (15px cho trên/dưới, 30px cho trái/phải) */
+  text-decoration: none; /* Bỏ gạch chân mặc định của link */
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px; /* Bo tròn các góc */
+  /* Hiệu ứng chuyển động mượt mà cho màu nền, chuyển vị và bóng đổ */
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Định dạng trạng thái KHI di chuột qua (:hover) */
+.btn:hover {
+  background-color: #2980b9; /* Chuyển sang màu xanh dương đậm hơn */
+  transform: translateY(-3px); /* Nhích lên trên 3px (Thử thách mở rộng) */
+  box-shadow: 0 8px 15px rgba(41, 128, 185, 0.3); /* Bóng đổ mềm mại */
+}
+
+/* Trạng thái khi bấm chuột (:active) */
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(41, 128, 185, 0.2);
+}
