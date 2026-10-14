@@ -66,3 +66,15 @@ INSERT IGNORE INTO permission(id, name) VALUES
 (3, 'delete'),
 (4, 'view');
 
+-- ============================================
+-- PHẦN BỔ SUNG: BẢNG EMPLOYEE (TEST WITHOUT TRANSACTION)
+-- ============================================
+CREATE TABLE IF NOT EXISTS Employee (
+    id INT(11) AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    salary DECIMAL(15, 2) NOT NULL,
+    created_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+

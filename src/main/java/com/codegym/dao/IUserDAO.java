@@ -30,4 +30,7 @@ public interface IUserDAO {
 
     // Test Without Transaction
     void insertUpdateWithoutTransaction() throws SQLException;
+
+    // Test With Transaction (JDBC Transaction All-or-Nothing)
+    void insertUpdateUseTransaction();
 }

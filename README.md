@@ -145,3 +145,26 @@ Tệp lưu trữ `user-management.war` sẽ được sinh ra trong thư mục `t
    ```
    Cả hai bảng đều lưu trữ thành công các bản ghi tương ứng đồng thời.
 
+## 8. [Thực hành] Thực Thi SQL Không Sử Dụng Transaction (Hiện Tượng Rác Dữ Liệu)
+
+### 8.1. Mô tả kịch bản thử nghiệm
+Trong bài thực hành này, ứng dụng thực thi một chuỗi gồm 2 lệnh `INSERT` và 1 lệnh `UPDATE` vào bảng `Employee` trong chế độ mặc định của JDBC (`auto-commit = true`).
+- Lệnh 1: `INSERT INTO Employee (name, salary, created_Date) VALUES ('Quynh', 10, NOW())` -> Thành công.
+- Lệnh 2: `INSERT INTO Employee (name, salary, created_Date) VALUES ('Ngan', 20, NOW())` -> Thành công.
+- Lệnh 3: `UPDATE Employee SET salary = ? WHERE name = ?` -> **Cố tình cấu hình sai chỉ số tham số** `psUpdate.setBigDecimal(2, 999.99)` thay vì index `1` -> Ném lỗi `SQLException: No value specified for parameter 1`.
+
+### 8.2. Hiện tượng quan sát và kết luận cốt lõi
+1. **Truy cập:**
+   `http://localhost:8080/user-management/users?action=test-without-tran`
+2. **Console Log:**
+   Hệ thống ném ra ngoại lệ `java.sql.SQLException: No value specified for parameter 1`.
+3. **Kiểm tra CSDL MySQL:**
+   ```sql
+   SELECT * FROM Employee;
+   ```
+   - 2 bản ghi `Quynh` (lương 10) và `Ngan` (lương 20) **vẫn tồn tại trong cơ sở dữ liệu**.
+   - Mức lương của `Quynh` không được cập nhật lên `999.99`.
+4. **Kết luận:**
+   Vì không sử dụng Transaction (`connection.setAutoCommit(false)`), mỗi lệnh `INSERT` được commit riêng lẻ vào database ngay lập tức. Khi lệnh thứ 3 thất bại, CSDL rơi vào trạng thái "ghi dữ liệu một nửa" (inconsistent state / partial update), vi phạm nguyên lý **Atomicity** (Tính nguyên tố) trong ACID. Đây là lý do bắt buộc phải sử dụng Transaction cho các tác vụ nghiệp vụ có nhiều bước phụ thuộc lẫn nhau.
+
+
