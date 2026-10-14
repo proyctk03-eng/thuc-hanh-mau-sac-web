@@ -1,35 +1,40 @@
-# Ghi Chú Thực Hành: Tạo Trang Web Đầu Tiên Của Bạn - index.html
+# Báo Cáo Thực Hành: Viết Profile Cá Nhân Bằng Các Thẻ HTML Đã Học
 
-## 1. Mục Tiêu Đã Hoàn Thành
-- [x] Tạo thư mục dự án `my-first-website` để quản lý mã nguồn tập trung.
-- [x] Mở thư mục làm việc trong Visual Studio Code (`File -> Open Folder...`).
-- [x] Tạo tệp tin `index.html` đầu tiên.
-- [x] Khởi tạo cấu trúc khung HTML5 chuẩn bằng phím tắt Emmet (`!` + `Tab` hoặc `Enter`).
-- [x] Tùy chỉnh thuộc tính ngôn ngữ (`lang="vi"`) và tiêu đề trang (`<title>Trang Web Đầu Tiên Của Tôi</title>`).
-- [x] Khởi chạy và kiểm tra hiển thị trực tiếp trên trình duyệt bằng tiện ích **Live Server**.
+## 1. Giới Thiệu & Mục Tiêu Đạt Được
+- [x] Áp dụng thuần thục các thẻ HTML cốt lõi: `<h1>`, `<h2>`, `<p>`, `<img>`, `<strong>`, `<em>`, `<ul>`, `<li>`.
+- [x] Tổ chức cấu trúc thư mục dự án chuẩn với thư mục tài nguyên hình ảnh `images/` và tệp ảnh đại diện `avatar.jpg`.
+- [x] Hiển thị nội dung đa phương tiện kết hợp văn bản có cấu trúc ngữ nghĩa (semantic HTML).
+- [x] Kiểm tra hiển thị trực quan thông qua tiện ích Live Server trong Visual Studio Code.
 
 ---
 
 ## 2. Ghi Chú Kiến Thức Cốt Lõi (Nội Dung Nộp Bài Thực Hành)
 
-### 2.1. Ý nghĩa của tệp `index.html`
-- `index.html` là quy ước đặt tên quốc tế cho trang chủ (default root document) của một trang web hoặc thư mục trên máy chủ web (Web Server).
-- Khi người dùng truy cập vào một tên miền (ví dụ: `https://tenmien.com/`), máy chủ web sẽ tự động tìm kiếm và phản hồi tệp có tên `index.html` đầu tiên mà không cần người dùng phải gõ đầy đủ đường dẫn tệp.
+### 2.1. Cấu trúc thư mục dự án chuẩn
+```text
+my-first-website/
+├── images/
+│   └── avatar.jpg          # Tệp ảnh đại diện (đường dẫn tương đối: images/avatar.jpg)
+├── index.html              # Trang chủ hiển thị thông tin cá nhân
+└── README.md               # Tài liệu ghi chú và hướng dẫn thực hành
+```
 
-### 2.2. Phím tắt Emmet trong VS Code
-- Gõ dấu chấm than `!` trong tệp `.html` và nhấn `Tab` hoặc `Enter`, VS Code sẽ tự động sinh mã khung HTML5 hoàn chỉnh:
-  - `<!DOCTYPE html>`: Khai báo tài liệu tuân theo chuẩn HTML5.
-  - `<html lang="vi">`: Thẻ gốc bao bọc toàn bộ trang web, khai báo ngôn ngữ trang là Tiếng Việt.
-  - `<head>`: Chứa siêu dữ liệu (metadata) của trang web như bảng mã ký tự (`UTF-8`), cấu hình hiển thị responsive trên thiết bị di động (`viewport`), và tiêu đề tab trình duyệt (`<title>`).
-  - `<body>`: Chứa toàn bộ nội dung trực quan hiển thị cho người dùng (văn bản, tiêu đề, hình ảnh, liên kết, bảng biểu,...).
+### 2.2. Bảng phân tích ngữ nghĩa các thẻ HTML đã sử dụng
 
-### 2.3. Lợi ích của Live Server
-- **Tự động làm mới (Hot Reload / Live Reload):** Mỗi khi lưu tệp (`Ctrl + S`), Live Server sẽ tự động làm mới trình duyệt ngay lập tức mà không cần bấm F5 thủ công.
-- **Mô phỏng máy chủ cục bộ:** Tạo một máy chủ local HTTP server (thường là `http://127.0.0.1:5500/` hoặc `localhost:5500`), giúp tránh các lỗi liên quan đến giao thức tệp cục bộ (`file:///`).
+| Thẻ HTML | Tên gọi & Ngữ nghĩa | Vai trò trong bài thực hành |
+| :--- | :--- | :--- |
+| `<h1>` | Heading 1 (Đề mục cấp cao nhất) | Hiển thị tên đầy đủ của chủ nhân trang web (`Nguyễn Thị Bê`). Mỗi trang web chỉ nên có duy nhất một thẻ `<h1>`. |
+| `<h2>` | Heading 2 (Đề mục phụ cấp 2) | Phân chia các khối nội dung lớn: *"Giới thiệu bản thân"* và *"Sở thích"*. |
+| `<img>` | Image (Thẻ tự đóng) | Nhúng ảnh chân dung đại diện với thuộc tính `src="images/avatar.jpg"`, `alt` mô tả hỗ trợ tiếp cận (a11y) và `width="200"`. |
+| `<p>` | Paragraph (Đoạn văn) | Chứa văn bản giới thiệu chi tiết về nghề nghiệp và đam mê công nghệ. |
+| `<strong>` | Strong Importance (Nhấn mạnh tầm quan trọng) | In đậm cụm từ **lập trình viên** nhằm làm nổi bật chuyên môn chính. |
+| `<em>` | Emphasis (Nhấn mạnh ngữ điệu) | In nghiêng từ *đẹp mắt* để biểu thị cảm xúc và sắc thái biểu cảm. |
+| `<ul>` | Unordered List (Danh sách không có thứ tự) | Bao bọc danh sách các sở thích cá nhân dưới dạng bullet points. |
+| `<li>` | List Item (Mục trong danh sách) | Biểu diễn từng sở thích cụ thể như đọc sách, chơi cờ vua, đi bộ đường dài. |
 
 ---
 
-## 3. Cấu Trúc Mã Nguồn Hoàn Chỉnh (`index.html`)
+## 3. Mã Nguồn Hoàn Chỉnh (`index.html`)
 
 ```html
 <!DOCTYPE html>
@@ -37,11 +42,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Web Đầu Tiên Của Tôi</title>
+    <title>Trang Web Đầu Tiên Của Tôi - Profile Cá Nhân</title>
 </head>
 <body>
-    <h1>Chào mừng bạn đến với trang web đầu tiên của tôi!</h1>
-    <p>Trang web này được tạo bằng Visual Studio Code, sử dụng phím tắt Emmet và chạy thử nghiệm trực tiếp qua tiện ích Live Server.</p>
+    <h1>Nguyễn Thị Bê</h1>
+    <img src="images/avatar.jpg" alt="Ảnh chân dung của Nguyễn Thị Bê" width="200">
+    
+    <h2>Giới thiệu bản thân</h2>
+    <p>Xin chào! Tôi là một <strong>lập trình viên</strong> đang trên hành trình học hỏi về thế giới phát triển web. Tôi có niềm đam mê với công nghệ và thích tạo ra những sản phẩm <em>đẹp mắt</em> và hữu ích.</p>
+    
+    <h2>Sở thích</h2>
+    <ul>
+        <li>Đọc sách khoa học viễn tưởng</li>
+        <li>Chơi cờ vua</li>
+        <li>Đi bộ đường dài</li>
+    </ul>
 </body>
 </html>
 ```
+
+---
+
+## 4. Ghi Chú Kinh Nghiệm Khi Làm Bài
+1. **Đường dẫn tương đối (Relative Path):** Khi tệp `index.html` và thư mục `images/` nằm cùng cấp, đường dẫn tới ảnh phải là `images/avatar.jpg`. Nếu viết `/images/avatar.jpg` hoặc nhầm tên tệp, ảnh sẽ không hiển thị.
+2. **Thuộc tính `alt`:** Luôn khai báo thuộc tính `alt` đầy đủ để người khiếm thị sử dụng Screen Reader có thể hiểu được nội dung ảnh, đồng thời hỗ trợ SEO và hiển thị văn bản thay thế khi đường dẫn ảnh bị lỗi.
+3. **Phân biệt `<strong>` vs `<b>`, `<em>` vs `<i>`:** Thẻ `<strong>` và `<em>` mang ý nghĩa ngữ nghĩa (semantic meaning), giúp công cụ tìm kiếm và thiết bị trợ thính hiểu được mức độ quan trọng của từ ngữ, thay vì chỉ đơn thuần là định dạng hiển thị thị giác.
