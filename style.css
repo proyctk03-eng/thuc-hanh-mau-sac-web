@@ -1,0 +1,115 @@
+/* ==========================================================================
+   Phong cách trang Công thức nấu ăn (recipe.html)
+   Ứng dụng màu sắc, typography và các bộ chọn CSS (Element, Class, ID)
+   ========================================================================== */
+
+/* --- Phong cách chung --- */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6; /* Giãn cách dòng cho dễ đọc */
+  background-color: #f8f9fa; /* Màu nền xám rất nhạt */
+  color: #333; /* Màu chữ mặc định xám đậm */
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Bố cục chính --- */
+#recipe-card {
+  width: 800px; /* Giới hạn chiều rộng */
+  margin: 40px auto; /* Tự động căn giữa theo chiều ngang */
+  background-color: #ffffff; /* Nền trắng cho thẻ công thức */
+  padding: 30px; /* Tạo khoảng đệm bên trong */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Chữ viết (Typography) --- */
+h1, h2 {
+  font-family: "Georgia", serif; /* Một font có chân cho tiêu đề */
+  color: #c0392b; /* Màu đỏ đậm */
+}
+
+h1 {
+  text-align: center; /* Căn giữa tiêu đề chính */
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  border-bottom: 2px solid #f1c40f; /* Thêm một đường gạch chân trang trí */
+  padding-bottom: 5px; /* Tạo khoảng cách với đường gạch chân */
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+/* --- Ảnh món ăn minh họa --- */
+.recipe-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.recipe-intro {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* --- Bảng biểu --- */
+table {
+  width: 100%; /* Bảng chiếm toàn bộ chiều rộng của thẻ cha */
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th {
+  text-align: left; /* Căn trái cho các ô tiêu đề */
+  background-color: #ecf0f1; /* Nền xám nhạt cho tiêu đề */
+  padding: 10px 12px;
+  border: 1px solid #dfe6e9;
+  font-weight: bold;
+}
+
+td {
+  padding: 10px 12px;
+  border: 1px solid #dfe6e9;
+}
+
+/* --- Danh sách các bước --- */
+.recipe-steps {
+  padding-left: 20px;
+}
+
+.recipe-steps li {
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+/* --- Tiện ích --- */
+.highlight {
+  color: #e67e22; /* Màu cam */
+  font-weight: bold;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 860px) {
+  #recipe-card {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .recipe-img {
+    height: 250px;
+  }
+}
