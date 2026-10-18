@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* Căn giữa theo trục ngang */
+    align-items: center;     /* Căn giữa theo trục dọc */
+    background-color: #f0f2f5;
+    padding: 20px;
+}
+
+.center-card {
+    padding: 30px 40px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.center-card h3 {
+    color: #1e293b;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.center-card p {
+    color: #64748b;
+    font-size: 1rem;
+    line-height: 1.5;
+}
