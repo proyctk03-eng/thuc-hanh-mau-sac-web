@@ -1,0 +1,302 @@
+/* ==========================================================================
+   Tạp Chí Công Nghệ - Layout Tờ Báo Online
+   Kiến trúc Bố cục Tổng thể & Bố cục Nội dung Bất đối xứng (CSS Grid)
+   ========================================================================== */
+
+:root {
+  --primary-color: #0f172a;
+  --secondary-color: #1e293b;
+  --accent-hot: #ef4444;
+  --accent-tech: #2563eb;
+  --accent-gold: #f59e0b;
+  --bg-page: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-light: #e2e8f0;
+  --radius-lg: 14px;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================= 2. BỐ CỤC TỔNG THỂ (.page-container) ================= */
+.page-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Header, Nội dung chính chiếm phần còn lại, Footer ở đáy */
+  min-height: 100vh; /* Đảm bảo toàn bộ layout tối thiểu bằng chiều cao màn hình */
+  background-color: var(--bg-page);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* ================= HEADER & FOOTER (Chiếm trọn chiều rộng) ================= */
+.header {
+  grid-column: 1 / -1; /* Chiếm toàn bộ chiều rộng của lưới */
+  background-color: #ffffff;
+  border-bottom: 2px solid var(--primary-color);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.logo {
+  font-family: "Georgia", serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: var(--primary-color);
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent-tech);
+}
+
+.header-date {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* ================= 3. LƯỚI NỘI DUNG CHÍNH (.content-grid) ================= */
+.content-grid {
+  display: grid; /* Lưới lồng lưới (Nested Grid) */
+  grid-template-columns: repeat(4, 1fr); /* Định nghĩa 4 cột đồng đều */
+  grid-auto-rows: minmax(200px, auto); /* Chiều cao cơ bản cho các hàng */
+  gap: 20px; /* Khoảng cách giữa các thẻ bài viết */
+  max-width: 1200px;
+  width: 100%;
+  margin: 30px auto;
+  padding: 0 24px;
+}
+
+/* ================= 4. SẮP XẾP BẤT ĐỐI XỨNG CÁC THẺ (.card) ================= */
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-content {
+  z-index: 2;
+}
+
+/* Nhãn danh mục (Badge) */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: #e2e8f0;
+  color: var(--secondary-color);
+  margin-bottom: 12px;
+}
+
+.badge-hot {
+  background-color: #fee2e2;
+  color: var(--accent-hot);
+}
+
+.badge-special {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+/* --- ĐỊNH NGHĨA KÍCH THƯỚC BẤT ĐỐI XỨNG CHO TỪNG THẺ --- */
+
+/* Thẻ 1: Tiêu điểm lớn nhất - Chiếm 2 cột VÀ 2 hàng (span 2 x span 2) */
+.card-1 {
+  grid-column: span 2;
+  grid-row: span 2;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #ffffff;
+}
+
+.card-1 h2 {
+  font-family: "Georgia", serif;
+  font-size: 1.85rem;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.card-1 p {
+  color: #cbd5e1;
+  font-size: 1rem;
+}
+
+/* Thẻ 2: Tin công nghệ nổi bật - Chiếm 2 cột và 1 hàng (span 2 x 1) */
+.card-2 {
+  grid-column: span 2;
+  grid-row: span 1;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border-color: #bfdbfe;
+}
+
+.card-2 h3 {
+  font-size: 1.3rem;
+  color: #1e3a8a;
+  margin-bottom: 8px;
+}
+
+.card-2 p {
+  color: #3b82f6;
+  font-size: 0.95rem;
+}
+
+/* Thẻ 3 & 4: Các thẻ tiêu chuẩn (1 cột x 1 hàng) */
+.card-3 {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.card-4 {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.card-3 h3, .card-4 h3, .card-6 h3 {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+}
+
+.card-3 p, .card-4 p, .card-6 p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Thẻ 5: Bài viết góc nhìn dài - Chiếm 3 cột (span 3 x 1) */
+.card-5 {
+  grid-column: span 3;
+  grid-row: span 1;
+  background-color: #faf5ff;
+  border-color: #e9d5ff;
+}
+
+.card-5 h3 {
+  font-size: 1.25rem;
+  color: #6b21a8;
+  margin-bottom: 8px;
+}
+
+.card-5 p {
+  color: #7e22ce;
+  font-size: 0.95rem;
+}
+
+/* Thẻ 6: Thẻ phân tích cuối dòng - Chiếm 1 cột (span 1 x 1) */
+.card-6 {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  grid-column: 1 / -1; /* Chiếm toàn bộ chiều rộng của lưới */
+  background-color: var(--primary-color);
+  color: #94a3b8;
+  padding: 30px 24px;
+  margin-top: auto;
+  border-top: 1px solid #334155;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footer-inner p + p {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* ================= RESPONSIVE DESIGN ================= */
+@media (max-width: 992px) {
+  .content-grid {
+    grid-template-columns: repeat(2, 1fr); /* Chuyển sang 2 cột trên Tablet */
+  }
+
+  .card-1 {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .card-5 {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .content-grid {
+    grid-template-columns: 1fr; /* Chuyển sang 1 cột duy nhất trên Điện thoại */
+  }
+
+  .card-1, .card-2, .card-3, .card-4, .card-5, .card-6 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+}
