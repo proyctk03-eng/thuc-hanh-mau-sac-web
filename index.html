@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navigation - Hamburger Menu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="main-header">
+    <a href="#" class="logo">MyBrand</a>
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    
+    <label for="menu-toggle" class="hamburger-menu" aria-label="Toggle navigation menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </label>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#">Sản phẩm</a></li>
+        <li><a href="#">Dịch vụ</a></li>
+        <li><a href="#">Liên hệ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page-content">
+    <div class="content-box">
+      <h1>Thử Thách: Hamburger Menu Trên Mobile</h1>
+      <p>
+        Menu điều hướng này hoạt động 100% bằng CSS thuần (Pure CSS) kết hợp <strong>thủ thuật Checkbox (:checked)</strong> và <strong>Media Query</strong> mà không cần sử dụng bất kỳ dòng mã JavaScript nào.
+      </p>
+      <div class="tip-card">
+        <h3>Hướng dẫn kiểm tra:</h3>
+        <ul>
+          <li><strong>Trên màn hình Desktop (&ge; 768px):</strong> Menu hiển thị thanh ngang truyền thống, icon hamburger ẩn hoàn toàn.</li>
+          <li><strong>Trên màn hình Mobile (&lt; 768px):</strong> Menu ẩn đi, icon hamburger 3 vạch xuất hiện. Bấm vào icon để trượt mở menu xuống mượt mà.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
