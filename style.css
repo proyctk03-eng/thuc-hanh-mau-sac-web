@@ -1,0 +1,58 @@
+/* Reset và thiết lập body */
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 20px;
+  background-color: #333;
+}
+
+/* Định dạng cơ bản cho các item */
+.item {
+  padding: 20px;
+  color: white;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Tô màu cho từng item */
+.item-1 { background-color: #b71c1c; }
+.item-2 { background-color: #0d47a1; }
+.item-3 { background-color: #1b5e20; }
+.item-4 { background-color: #e65100; }
+.item-5 { background-color: #4a148c; }
+.item-6 { background-color: #3e2723; }
+
+/* Dựng lưới Grid */
+.grid-container {
+  display: grid;
+  /* Tạo một lưới có 4 cột rộng bằng nhau */
+  grid-template-columns: repeat(4, 1fr);
+  /* Đặt chiều cao mặc định cho mỗi hàng là 120px */
+  grid-auto-rows: 120px;
+  gap: 10px;
+}
+
+/* --- Quy tắc sắp xếp bất đối xứng --- */
+.item-1 {
+  background-color: #b71c1c;
+  grid-column: span 2; /* Chiếm 2 cột */
+  grid-row: span 2;    /* Chiếm 2 hàng */
+}
+
+.item-3 {
+  background-color: #1b5e20;
+  grid-column: span 2; /* Chiếm 2 cột */
+}
+
+.item-4 {
+  background-color: #e65100;
+  grid-row: span 2;    /* Chiếm 2 hàng */
+}
