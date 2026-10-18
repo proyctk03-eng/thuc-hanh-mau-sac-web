@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Cá Nhân - Thiết Kế Web Chuẩn Mobile-First Responsive</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-container">
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">PORTFOLIO.DEV</div>
+        <nav class="nav-links">
+          <a href="#about">Giới thiệu</a>
+          <a href="#projects">Dự án</a>
+          <a href="#skills">Kỹ năng</a>
+          <a href="#contact">Liên hệ</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="content-grid" id="projects">
+      <!-- Thẻ 1: Dự án Tiêu Điểm với Tối ưu Hình ảnh Đáp ứng (Art Direction qua thẻ <picture>) -->
+      <article class="card card-1">
+        <picture class="card-picture">
+          <source media="(min-width: 1024px)" srcset="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&auto=format&fit=crop&q=80">
+          <source media="(min-width: 768px)" srcset="https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&auto=format&fit=crop&q=80">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=450&auto=format&fit=crop&q=80" alt="Hệ Thống Trí Tuệ Nhân Tạo & Thiết Kế Đa Nền Tảng" class="card-img" loading="lazy">
+        </picture>
+        <div class="card-content">
+          <span class="badge badge-hot">Dự án Tiêu Điểm</span>
+          <h2>Hệ Thống Phân Tích Dữ Liệu AI Đa Phương Thức</h2>
+          <p>Nền tảng trí tuệ nhân tạo thế hệ mới với giao diện dashboard trực quan và khả năng tự động xử lý chuỗi công việc phức tạp.</p>
+        </div>
+      </article>
+
+      <!-- Thẻ 2: Thiết Kế Web Hiện Đại -->
+      <article class="card card-2">
+        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&auto=format&fit=crop&q=80" alt="Thiết Kế Web Hiện Đại" class="card-img" loading="lazy">
+        <div class="card-content">
+          <span class="badge">Frontend Design</span>
+          <h3>Thiết Kế Web Với CSS Grid & Flexbox</h3>
+          <p>Xây dựng hệ thống design system chuẩn mực, hỗ trợ giao diện tối/sáng và chuyển động mượt mà.</p>
+        </div>
+      </article>
+
+      <!-- Thẻ 3: Ứng Dụng Xanh & Bền Vững -->
+      <article class="card card-3">
+        <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=600&auto=format&fit=crop&q=80" alt="Nền Tảng Năng Lượng Xanh" class="card-img" loading="lazy">
+        <div class="card-content">
+          <span class="badge">Bền vững</span>
+          <h3>Hệ Sinh Thái Năng Lượng Xanh</h3>
+          <p>Ứng dụng giám sát lượng khí thải carbon và tối ưu tiêu thụ điện năng.</p>
+        </div>
+      </article>
+
+      <!-- Thẻ 4: Ứng Dụng Di Động -->
+      <article class="card card-4">
+        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&auto=format&fit=crop&q=80" alt="Ứng Dụng Mobile Fintech" class="card-img" loading="lazy">
+        <div class="card-content">
+          <span class="badge">Mobile App</span>
+          <h3>Fintech Smart Wallet</h3>
+          <p>Ví tài chính điện tử thế hệ mới bảo mật đa tầng và thanh toán tức thì.</p>
+        </div>
+      </article>
+
+      <!-- Thẻ 5: Nền Tảng Làm Việc Từ Xa -->
+      <article class="card card-5">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&auto=format&fit=crop&q=80" alt="Không Gian Làm Việc Từ Xa" class="card-img" loading="lazy">
+        <div class="card-content">
+          <span class="badge badge-special">Góc nhìn</span>
+          <h3>Không Gian Làm Việc Cộng Tác Kỹ Thuật Số (Hybrid Workspace)</h3>
+          <p>Giải pháp kết nối đội ngũ kỹ sư toàn cầu với các công cụ lập trình cặp trực tuyến và bảng phân phối tác vụ thông minh theo thời gian thực.</p>
+        </div>
+      </article>
+
+      <!-- Thẻ 6: An Toàn & Bảo Mật -->
+      <article class="card card-6">
+        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&auto=format&fit=crop&q=80" alt="An Ninh Mạng & Mã Hóa" class="card-img" loading="lazy">
+        <div class="card-content">
+          <span class="badge">Bảo mật</span>
+          <h3>Bảo Mật & Mã Hóa Lượng Tử</h3>
+          <p>Kiến trúc bảo mật zero-trust chống xâm nhập và bảo vệ dữ liệu người dùng.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <p>&copy; 2026 Portfolio.Dev - Kỹ sư Giao diện Front-end Chuyên nghiệp.</p>
+        <p>Thiết kế hoàn toàn theo triết lý Mobile-First & CSS Grid Responsive hiện đại.</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
